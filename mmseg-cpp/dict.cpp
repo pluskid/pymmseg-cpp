@@ -12,12 +12,12 @@ namespace rmmseg
         Entry *next;
     };
 
-    const int init_size = 262147;
-    const int max_density = 5;
+    const size_t init_size = 262147;
+    const size_t max_density = 5;
     /*
       Table of prime numbers 2^n+a, 2<=n<=30.
     */
-    static int primes[] = {
+    static size_t primes[] = {
         524288 + 21,
         1048576 + 7,
         2097152 + 17,
@@ -33,14 +33,14 @@ namespace rmmseg
     };
 
 
-    static int n_bins = init_size;
-    static int n_entries = 0;
+    static size_t n_bins = init_size;
+    static size_t n_entries = 0;
     static Entry **bins = static_cast<Entry **>(std::calloc(init_size,
                                                             sizeof(Entry *)));
 
-    static int new_size()
+    static size_t new_size()
     {
-        for (unsigned int i = 0;
+        for (size_t i = 0;
              i < sizeof(primes)/sizeof(primes[0]);
              ++i)
         {
@@ -76,7 +76,7 @@ namespace rmmseg
         Entry *entry, *next;
         unsigned int hash_val;
 
-        for (int i = 0; i < n_bins; ++i)
+        for (size_t i = 0; i < n_bins; ++i)
         {
             entry = bins[i];
             while (entry)
@@ -140,6 +140,7 @@ namespace rmmseg
                 entry->next = NULL;
                 bins[h] = entry;
                 n_entries++;
+                return;
             }
 
             bool done = false;
@@ -168,6 +169,7 @@ namespace rmmseg
                 entry->word = word;
                 entry->next = bins[h];
                 bins[h] = entry;
+                n_entries++;
             }
         }
 
@@ -179,7 +181,7 @@ namespace rmmseg
                 return false;
             }
 
-            const int buf_len = 24;
+            const size_t buf_len = 24;
             char buf[buf_len];
             char *ptr;
 

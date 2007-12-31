@@ -164,15 +164,11 @@ namespace rmmseg
         unsigned char ch = m_text[m_pos];
         if (ch >= 0xC0 && ch <= 0xDF)
         {
-            if (m_text_length-m_pos < 2)
-                return 1; /* broken text at the end */
-            return 2;
+            return min(2, m_text_length-m_pos);
         }
         if (ch >= 0xE0 && ch <= 0xEF)
         {
-            if (m_text_length-m_pos < 3)
-                return 1; /* broken text at the end */
-            return 3;
+            return min(3, m_text_length-m_pos);
         }
         return 1;
     }
@@ -190,10 +186,10 @@ namespace rmmseg
 
         while (m_pos < m_text_length)
         {
+            if (n >= max_word_length())
+                break;
             len = next_char();
             if (len <= 1)
-                break;
-            if (n >= max_word_length())
                 break;
 
             m_pos += len;

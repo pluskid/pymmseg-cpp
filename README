@@ -50,9 +50,19 @@ following way:
   mmseg.dict_load_words('customize_words.dic')
   mmseg.dict_load_chars('customize_chars.dic')
 
-The format for the dictionary is very simple. On each line, you specify
-the frequency followed by an whitespace and then the word/character. Just 
-don't forget the final newline at the end of the file.  
+==== Format for chars.dic
+
+* each line contains the freq of the character, a space, and then the character
+
+==== Format for words.dic
+
+* each line contains the length of the word, a space, and then the word
+
+==== WARNING
+
+* The length of the word means number of characters in the word, not number of bytes
+* The format of words.dic is different from chars.dic, see above
+* There should be a newline at the end of all the dict file
 
 == REQUIREMENTS:
 

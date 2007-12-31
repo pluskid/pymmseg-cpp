@@ -9,14 +9,13 @@
 namespace rmmseg
 {
     template <typename Cmp>
-    void take_highest(std::vector<Chunk> &chunks, Cmp &cmp)
+    void take_highest(std::vector<Chunk> &chunks, const Cmp &cmp)
     {
         unsigned int i = 1, j;
-        Chunk& max = chunks[0];
 
         for (j = 1; j < chunks.size(); ++j)
         {
-            int rlt = cmp(chunks[j], max);
+            int rlt = cmp(chunks[j], chunks[0]);
             if (rlt > 0)
                 i = 0;
             if (rlt >= 0)
@@ -27,7 +26,7 @@ namespace rmmseg
 
     struct MMCmp_t
     {
-        int operator()(Chunk &a, Chunk &b)
+        int operator()(const Chunk &a, const Chunk &b) const
         {
             return a.total_length() - b.total_length();
         }
@@ -39,7 +38,7 @@ namespace rmmseg
 
     struct LAWLCmp_t
     {
-        int operator()(Chunk &a, Chunk &b)
+        int operator()(const Chunk &a, const Chunk &b) const
         {
             double rlt = a.average_length() - b.average_length();
             if (rlt == 0)
@@ -56,7 +55,7 @@ namespace rmmseg
 
     struct SVWLCmp_t
     {
-        int operator()(Chunk &a, Chunk& b)
+        int operator()(const Chunk &a, const Chunk& b) const
         {
             double rlt = a.variance() - b.variance();
             if (rlt == 0)
@@ -73,7 +72,7 @@ namespace rmmseg
 
     struct LSDMFOCWCmp_t
     {
-        int operator()(Chunk &a, Chunk& b)
+        int operator()(const Chunk &a, const Chunk& b) const
         {
             return a.degree_of_morphemic_freedom() - b.degree_of_morphemic_freedom();
         }

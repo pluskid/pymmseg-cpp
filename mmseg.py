@@ -98,7 +98,9 @@ class Algorithm(object):
         """\
         Create an Algorithm instance to segment text.
         """
-        self.algor = mmseg.mmseg_algor_create(text, len(text))
+        self.text      = text # add a reference to prevent the string buffer from 
+                              # being GC-ed
+        self.algor     = mmseg.mmseg_algor_create(text, len(text))
         self.destroied = False
 
     def __iter__(self):

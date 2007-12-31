@@ -26,10 +26,10 @@ namespace rmmseg
             m_text_length(length),
             m_tmp_words_i(0),
             m_match_cache_i(0)
-            {
-                for (int i = 0; i < match_cache_size; ++i)
-                    m_match_cache[i].first = -1;
-            }
+        {
+            for (int i = 0; i < match_cache_size; ++i)
+                m_match_cache[i].first = -1;
+        }
 
         Token next_token();
 
@@ -64,7 +64,7 @@ namespace rmmseg
             return &m_tmp_words[m_tmp_words_i++];
         }
 
-        /* related to max_word_length and match_words_cache_size */
+        /* related to max_word_length and match_cache_size */
         static const int max_tmp_words = 64;
         Word m_tmp_words[max_tmp_words];
         int m_tmp_words_i;

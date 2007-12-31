@@ -14,7 +14,7 @@ config = {
     'shared_oflag': '-o ',
     'obj_ext': 'o',
     'cxx': 'g++',
-    'cxx_flags': '-fPIC -O2 -c',
+    'cxx_flags': '-fPIC -O2 -c -Wall',
     }
 if sys.platform == 'win32':
     # use Microsoft compiler

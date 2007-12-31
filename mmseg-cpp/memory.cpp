@@ -4,6 +4,6 @@
 
 namespace rmmseg
 {
-    char *_pool_base = static_cast<char *>(std::malloc(PRE_ALLOC_SIZE));
-    int   _pool_size = PRE_ALLOC_SIZE;
+    char   *_pool_base = static_cast<char *>(std::malloc(PRE_ALLOC_SIZE));
+    size_t  _pool_size = PRE_ALLOC_SIZE;
 }

@@ -12,12 +12,12 @@
 
 namespace rmmseg
 {
-    const int REALLOC_SIZE = 2048; /* 2KB */
+    const size_t REALLOC_SIZE = 2048; /* 2KB */
 
-    extern int   _pool_size;
-    extern char *_pool_base;
+    extern size_t  _pool_size;
+    extern char   *_pool_base;
 
-    inline void *pool_alloc(int len)
+    inline void *pool_alloc(size_t len)
     {
         void *mem = _pool_base;
         
