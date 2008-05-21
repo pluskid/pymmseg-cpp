@@ -136,6 +136,7 @@ namespace rmmseg
                         chunk.n = 2;
                         chunks.push_back(chunk);
                     }
+                    m_pos -= w2->nbytes;
                 }
             }
             else if (m_pos == m_text_length)
@@ -143,6 +144,7 @@ namespace rmmseg
                 chunk.n = 1;
                 chunks.push_back(chunk);
             }
+            m_pos -= w1->nbytes;
         }
 
         m_pos = orig_pos;
