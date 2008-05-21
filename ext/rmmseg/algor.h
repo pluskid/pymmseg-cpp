@@ -23,7 +23,13 @@ namespace rmmseg
     public:
         Algorithm(const char *text, int length)
             :m_text(text), m_pos(0),
-            m_text_length(length) { }
+            m_text_length(length),
+            m_tmp_words_i(0),
+            m_match_cache_i(0)
+            {
+                for (int i = 0; i < match_cache_size; ++i)
+                    m_match_cache[i].first = -1;
+            }
 
         Token next_token();
 
@@ -46,10 +52,23 @@ namespace rmmseg
          * are not exist in the dictionary. It's length
          * value will be set to -1 to indicate it is
          * a tmp word. */
-        Word *get_tmp_word();
-        static const int max_tmp_words = 48; /* related to max_word_length */
+        Word *get_tmp_word()
+        {
+            if (m_tmp_words_i >= max_tmp_words)
+                m_tmp_words_i = 0;  // round wrap
+            return &m_tmp_words[m_tmp_words_i++];
+        }
+
+        /* related to max_word_length and match_words_cache_size */
+        static const int max_tmp_words = 64;
         Word m_tmp_words[max_tmp_words];
         int m_tmp_words_i;
+
+        /* match word caches */
+        static const int match_cache_size = 3;
+        typedef std::pair<int, std::vector<Word *> > match_cache_t;
+        match_cache_t m_match_cache[match_cache_size];
+        int m_match_cache_i;
     };
 }
 

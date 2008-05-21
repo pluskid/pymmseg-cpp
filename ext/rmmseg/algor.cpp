@@ -71,7 +71,6 @@ namespace rmmseg
 
     Token Algorithm::get_cjk_word(int len)
     {
-        m_tmp_words_i = 0;
         vector<Chunk> chunks = create_chunks();
 
         if (chunks.size() > 1)
@@ -168,18 +167,12 @@ namespace rmmseg
         return 1;
     }
 
-    Word *Algorithm::get_tmp_word()
-    {
-        if (m_tmp_words_i >= max_tmp_words)
-        {
-            assert(0 == "BUG: max tmp words exceeded");
-        }
-        return &m_tmp_words[m_tmp_words_i++];
-    }
-
-
     vector<Word *> Algorithm::find_match_words()
     {
+        for (int i = 0; i < match_cache_size; ++i)
+            if (m_match_cache[i].first == m_pos)
+                return m_match_cache[i].second;
+
         vector<Word *> words;
         Word *word;
         int orig_pos = m_pos;
@@ -212,6 +205,12 @@ namespace rmmseg
             word->text[word->nbytes] = '\0';
             words.push_back(word);
         }
+
+        m_match_cache[m_match_cache_i] = make_pair(m_pos, words);
+        m_match_cache_i++;
+        if (m_match_cache_i >= match_cache_size)
+            m_match_cache_i = 0;
+
         return words;
     }
 }
