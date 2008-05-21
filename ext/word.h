@@ -8,12 +8,13 @@
 
 namespace rmmseg
 {
+    const int word_embed_len = 4; /* at least 1 char (3 bytes+'\0') */
     struct Word
     {
         unsigned char   nbytes;   /* number of bytes */
-        unsigned char   length;   /* number of characters */
+        char            length;   /* number of characters */
         unsigned short  freq;
-        char            text[1];
+        char            text[word_embed_len];
     };
 
     /**
@@ -25,7 +26,9 @@ namespace rmmseg
     {
         if (freq > USHRT_MAX)
             freq = USHRT_MAX;   /* avoid overflow */
-        Word *w = static_cast<Word *>(pool_alloc(sizeof(Word)+strlen(text)));
+        Word *w = static_cast<Word *>(pool_alloc(sizeof(Word)
+                                                 + strlen(text)+1
+                                                 - word_embed_len));
         w->nbytes = std::strlen(text);
         w->length = length;
         w->freq = freq;
