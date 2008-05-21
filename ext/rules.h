@@ -29,28 +29,58 @@ namespace rmmseg
     {
         int operator()(Chunk &a, Chunk &b)
         {
-            int lena=0, lenb=0;
-            for (int i = 0; i < a.n; ++i)
-            {
-                if (a.words[i]->length == -1)
-                    lena += 1;
-                else
-                    lena += a.words[i]->length;
-            }
-            for (int i = 0; i < b.n; ++i)
-            {
-                if (b.words[i]->length == -1)
-                    lenb += 1;
-                else
-                    lenb += b.words[i]->length;
-            }
-            return lena - lenb;
+            return a.total_length() - b.total_length();
         }
     } MMCmp;
-
     void mm_filter(std::vector<Chunk> &chunks)
     {
         take_highest(chunks, MMCmp);
+    }
+
+    struct LAWLCmp_t
+    {
+        int operator()(Chunk &a, Chunk &b)
+        {
+            double rlt = a.average_length() - b.average_length();
+            if (rlt == 0)
+                return 0;
+            if (rlt > 0)
+                return 1;
+            return -1;
+        }
+    } LAWLCmp;
+    void lawl_filter(std::vector<Chunk> &chunks)
+    {
+        take_highest(chunks, LAWLCmp);
+    }
+
+    struct SVWLCmp_t
+    {
+        int operator()(Chunk &a, Chunk& b)
+        {
+            double rlt = a.variance() - b.variance();
+            if (rlt == 0)
+                return 0;
+            if (rlt < 0)
+                return 1;
+            return -1;
+        }
+    } SVWLCmp;
+    void svwl_filter(std::vector<Chunk> &chunks)
+    {
+        take_highest(chunks, SVWLCmp);
+    }
+
+    struct LSDMFOCWCmp_t
+    {
+        int operator()(Chunk &a, Chunk& b)
+        {
+            return a.degree_of_morphemic_freedom() - b.degree_of_morphemic_freedom();
+        }
+    } LSDMFOCWCmp;
+    void lsdmfocw_filter(std::vector<Chunk> &chunks)
+    {
+        take_highest(chunks, LSDMFOCWCmp);
     }
 }
 

@@ -68,7 +68,15 @@ namespace rmmseg
         m_tmp_words_i = 0;
         vector<Chunk> chunks = create_chunks();
 
-        mm_filter(chunks);
+        if (chunks.size() > 1)
+            mm_filter(chunks);
+        if (chunks.size() > 1)
+            lawl_filter(chunks);
+        if (chunks.size() > 1)
+            svwl_filter(chunks);
+        if (chunks.size() > 1)
+            lsdmfocw_filter(chunks);
+        
 
         Token token(m_text+m_pos, chunks[0].words[0]->nbytes);
         m_pos += chunks[0].words[0]->nbytes;

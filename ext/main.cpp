@@ -21,7 +21,7 @@ int main(int argc, char const *argv)
         printf("%s (nbytes = %d, length = %d, frequency = %d)\n",
                w->text, w->nbytes, w->length, w->freq);
 
-    const char *txt = "这是一段中文";
+    const char *txt = "我们是一段中文我们";
     char buf[12];
     rmmseg::ComplexAlgorithm algor(txt);
 
