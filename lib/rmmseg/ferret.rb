@@ -39,7 +39,11 @@ module RMMSeg
       # Get next token
       def next
         tok = @algor.next_token
-        return ::Ferret::Analysis::Token.new(tok.text, tok.start, tok.end)
+        if tok.nil?
+          return nil
+        else
+          return ::Ferret::Analysis::Token.new(tok.text, tok.start, tok.end)
+        end
       end
       
       # Get the text being tokenized
@@ -50,7 +54,7 @@ module RMMSeg
       # Set the text to be tokenized
       def text=(str)
         @text = str
-        @algor = Algorithm.new(@text,@text.length)
+        @algor = Algorithm.new(@text)
       end
     end
 
