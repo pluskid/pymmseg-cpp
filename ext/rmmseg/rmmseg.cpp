@@ -96,11 +96,11 @@ extern "C" {
     {
         Token *tk = ALLOC(Token);
         int start = t.text-base;
-        tk->text = rb_str_new(t.text, t.length);
 
         // This is necessary, see
         // http://pluskid.lifegoo.com/?p=348
-        rb_gc_mark(tk->text);
+        volatile VALUE text = rb_str_new(t.text, t.length);
+        tk->text = text;
 
         tk->start = INT2FIX(start);
         tk->end = INT2FIX(start + t.length);

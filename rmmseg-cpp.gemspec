@@ -2,7 +2,7 @@
 spec = Gem::Specification.new do |s|
   s.platform         =   Gem::Platform::RUBY
   s.name             =   "rmmseg-cpp"
-  s.version          =   "0.2.1"
+  s.version          =   "0.2.2"
   s.author           =   "pluskid"
   s.email            =   "pluskid@gmail.com"
   s.summary          =   "A high performance package for doing Chinese word segmentation."
