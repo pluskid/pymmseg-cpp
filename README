@@ -1,5 +1,4 @@
-rmmseg-cpp
-==========
+= rmmseg-cpp
 
 rmmseg (http://rmmseg.rubyforge.org) is a Chinese word segmentation library
 written for and in Ruby. It features full integration with Ruby. However, 
@@ -10,16 +9,26 @@ So I re-implemented rmmseg in C++ and wrapped it as a Ruby extension. This
 gem is aimed at high performance and thus less extensible than the pure-
 Ruby rmmseg gem. There are also some differences between them:
 
- - The dictionary format is different. For performance reason, the words
-   dictionary of rmmseg-cpp included the word length information in it. 
-   See rdoc of the Dictionary class for more information of the format.
-   It is likely that I will upgrade rmmseg's dictionary format to make
-   those two compatible, writing a Ruby script to convert the dictionary
-   is almost trivial.
+* The dictionary format is different. For performance reason, the words
+  dictionary of rmmseg-cpp included the word length information in it. 
+  See rdoc of the Dictionary class for more information of the format.
+  It is likely that I will upgrade rmmseg's dictionary format to make
+  those two compatible, writing a Ruby script to convert the dictionary
+  is almost trivial.
 
- - Only complex algorithm is provided currently. And I don't see any need
-   to implement the simple algorithm here if complex algorithm has a good
-   performance and a much better accuracy.
+  While the dictionaries in rmmseg will be loaded automatically when needed,
+  you'll need to load dictionaries explicitly in rmmseg-cpp.
 
-This gem is hosted on GitHub (http://github.com/pluskid/rmmseg-cpp/).
+* Only complex algorithm is provided currently. And I don't see any need
+  to implement the simple algorithm here if complex algorithm has a good
+  performance and a much better accuracy.
 
+Integration with ferret is almost identical as before, to run the example for
+rmmseg (http://rmmseg.rubyforge.org/#Analyzer-for-Ferret), only one minor
+change is needed:
+
+  RMMSeg::Dictionary.load_dictionaries
+
+Add the line above to explicitly load the default dictionaries before 
+using the analyzer. You can also add your own dictionaries through
+<tt>Dictionary#add</tt>.

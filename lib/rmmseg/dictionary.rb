@@ -14,18 +14,18 @@ module RMMSeg
       #
       #   [type, path]
       #
-      # where +type+ can either +:chars+ or +:words+. +path+ is the path
+      # where +type+ can either <tt>:chars</tt> or <tt>:words</tt>. +path+ is the path
       # to the dictionary file.
       #
-      # The format of +:chars+ dictionary is a collection of lines of the
+      # The format of <tt>:chars</tt> dictionary is a collection of lines of the
       # following form:
       #
       #   freq char
       #
-      # Where +frequency+ is a number *less than 65535*. +char+ is the
-      # character. They are spearated by *exactly one space*.
+      # Where +frequency+ is a number <b>less than 65535</b>. +char+ is the
+      # character. They are spearated by <b>exactly one space</b>.
       #
-      # The format of +:words+ dictionary is similar:
+      # The format of <tt>:words</tt> dictionary is similar:
       #
       #   length word
       #
@@ -35,7 +35,7 @@ module RMMSeg
       attr_accessor :dictionaries
 
       # Add a user defined dictionary, +type+ can be
-      # +:chars+ or +:words+. See doc of dictionaries.
+      # +:chars+ or <tt>:words</tt>. See doc of dictionaries.
       def add_dictionary(path, type)
         @dictionaries << [type, path]
       end
