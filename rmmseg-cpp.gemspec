@@ -13,7 +13,7 @@ spec = Gem::Specification.new do |s|
   s.require_path     =   'lib'
   s.extensions      <<   'ext/rmmseg/extconf.rb'
   s.has_rdoc         =   true
-  s.rdoc_options    <<   '--inline-source' <<
+  s.rdoc_options    <<   '--inline-source'    <<
                          '--main' << 'README' <<
                          '--line-numbers'
   s.extra_rdoc_files =   ['README']

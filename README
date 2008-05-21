@@ -1,5 +1,7 @@
 = rmmseg-cpp
 
+== Background
+
 rmmseg (http://rmmseg.rubyforge.org) is a Chinese word segmentation library
 written for and in Ruby. It features full integration with Ruby. However, 
 its performance (both time and memory) is terrible in some cases, especially
@@ -23,6 +25,20 @@ Ruby rmmseg gem. There are also some differences between them:
   to implement the simple algorithm here if complex algorithm has a good
   performance and a much better accuracy.
 
+== Install
+
+This project is hosted at github (http://github.com/pluskid/rmmseg-cpp/).
+You can use rubygems to install rmmseg-cpp:
+
+  sudo gem install pluskid-rmmseg-cpp --source=http://gems.github.com
+
+Unfortunately, the command is long and you'll have to use the 'pluskid'
+prefix currently. Or you can also check out the latest source code:
+
+  git clone git://github.com/pluskid/rmmseg-cpp.git
+
+== Usage
+
 Integration with ferret is almost identical as before, to run the example for
 rmmseg (http://rmmseg.rubyforge.org/#Analyzer-for-Ferret), only one minor
 change is needed:
@@ -32,3 +48,4 @@ change is needed:
 Add the line above to explicitly load the default dictionaries before 
 using the analyzer. You can also add your own dictionaries through
 <tt>Dictionary#add</tt>.
+
