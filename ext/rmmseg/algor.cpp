@@ -81,7 +81,9 @@ namespace rmmseg
             svwl_filter(chunks);
         if (chunks.size() > 1)
             lsdmfocw_filter(chunks);
-        
+
+        if (chunks.size() < 1)
+            return Token(NULL, 0);
 
         Token token(m_text+m_pos, chunks[0].words[0]->nbytes);
         m_pos += chunks[0].words[0]->nbytes;

@@ -68,7 +68,6 @@ extern "C" {
 
     static void tk_mark(Token *t)
     {
-        // start and end are Fixnums, no need to mark them
         rb_gc_mark(t->text);
     }
     static void tk_free(Token *t)
@@ -95,9 +94,14 @@ extern "C" {
     static VALUE cToken;
     static VALUE tk_create(const char* base, const rmmseg::Token &t)
     {
-        Token *tk = (Token *)malloc(sizeof(Token));
+        Token *tk = ALLOC(Token);
         int start = t.text-base;
         tk->text = rb_str_new(t.text, t.length);
+
+        // This is necessary, see
+        // http://pluskid.lifegoo.com/?p=348
+        rb_gc_mark(tk->text);
+
         tk->start = INT2FIX(start);
         tk->end = INT2FIX(start + t.length);
         return Data_Wrap_Struct(cToken,
@@ -127,7 +131,7 @@ extern "C" {
     static VALUE cAlgorithm;
     static VALUE algor_create(VALUE klass, VALUE text)
     {
-        Algorithm *algor = (Algorithm *)malloc(sizeof(Algorithm));
+        Algorithm *algor = ALLOC(Algorithm);
         void *mem;
         algor->text = text;
         mem = malloc(sizeof(rmmseg::Algorithm));
