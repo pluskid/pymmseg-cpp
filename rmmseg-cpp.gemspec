@@ -10,6 +10,6 @@ spec = Gem::Specification.new do |s|
     Dir.glob('ext/rmmseg/*.{cpp,h}') +
     Dir.glob('data/*')               +
     ['README', 'ext/rmmseg/extconf.rb']
-  s.require_paths = ['lib', 'ext']
+  s.require_path = 'lib'
   s.extensions << 'ext/rmmseg/extconf.rb'
 end

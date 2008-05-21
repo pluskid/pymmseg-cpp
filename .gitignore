@@ -1,3 +1,5 @@
 *.o
+*.so
+a.out
 Makefile
 

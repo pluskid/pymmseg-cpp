@@ -10,13 +10,21 @@ namespace rmmseg
 {
     Token Algorithm::next_token()
     {
-        if (m_pos >= m_text_length)
-            return Token(NULL, 0);
-
-        int len = next_char();
-        if (len == 1)
-            return get_basic_latin_word();
-        return get_cjk_word(len);
+        do
+        {
+            if (m_pos >= m_text_length)
+                return Token(NULL, 0);
+     
+            Token tk(NULL, 0);
+            int len = next_char();
+            if (len == 1)
+                tk = get_basic_latin_word();
+            else
+                tk = get_cjk_word(len);
+            if (tk.length > 0)
+                return tk;
+        }
+        while (true);
     }
 
     Token Algorithm::get_basic_latin_word()
@@ -58,10 +66,7 @@ namespace rmmseg
             len = next_char();
         }
 
-        if (start == end)       // punctuations followed by CJK word
-            return get_cjk_word(len);
-        else
-            return Token(m_text+start, end-start);
+        return Token(m_text+start, end-start);
     }
 
     Token Algorithm::get_cjk_word(int len)

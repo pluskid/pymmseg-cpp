@@ -1,2 +1,3 @@
 require 'rmmseg/dictionary'
-require 'rmmseg/rmmseg'
+require File.join(File.dirname(__FILE__), '..',
+                  'ext', 'rmmseg', 'rmmseg')
