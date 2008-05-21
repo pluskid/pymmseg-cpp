@@ -21,9 +21,9 @@ namespace rmmseg
     class Algorithm
     {
     public:
-        Algorithm(const char *text)
+        Algorithm(const char *text, int length)
             :m_text(text), m_pos(0),
-            m_text_length(strlen(text)) { }
+            m_text_length(length) { }
 
         Token next_token();
 

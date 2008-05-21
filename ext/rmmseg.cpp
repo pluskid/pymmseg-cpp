@@ -61,11 +61,41 @@ extern "C" {
         rmmseg::Algorithm *algor;
     };
 
+    static void algor_mark(Algorithm *a)
+    {
+        rb_gc_mark(a->text);
+    }
+    static void algor_free(Algorithm *a)
+    {
+        free(a->algor);
+    }
+
+    static VALUE cAlgorithm;
+    static VALUE algor_create(VALUE klass, VALUE text)
+    {
+        Algorithm *algor = (Algorithm *)malloc(sizeof(Algorithm));
+        void *mem;
+        algor->text = text;
+        mem = malloc(sizeof(rmmseg::Algorithm));
+        algor->algor = new(mem) rmmseg::Algorithm(RSTRING(text)->ptr,
+                                                  RSTRING(text)->len);
+        
+        return Data_Wrap_Struct(klass,
+                                (RUBY_DATA_FUNC)algor_mark,
+                                (RUBY_DATA_FUNC)algor_free,
+                                algor);
+    }
+
 
     void Init_rmmseg()
     {
+        typedef VALUE (*RUBY_METHOD) (...);
         mRMMSeg = rb_define_module("RMMSeg");
+
         cToken = rb_define_class_under(mRMMSeg, "Token", rb_cObject);
         rb_undef_method(rb_singleton_class(cToken), "new");
+
+        cAlgorithm = rb_define_class_under(mRMMSeg, "Algorithm", rb_cObject);
+        rb_define_singleton_method(cAlgorithm, "new", (RUBY_METHOD)algor_create, 1);
     }
 }
