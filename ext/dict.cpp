@@ -171,13 +171,12 @@ namespace rmmseg
             }
         }
 
-        void load_chars(const char *filename)
+        bool load_chars(const char *filename)
         {
             FILE *fp = fopen(filename, "r");
             if (!fp)
             {
-                // TODO: raise exception here
-                return;
+                return false;
             }
 
             const int buf_len = 24;
@@ -196,15 +195,15 @@ namespace rmmseg
             }
         
             fclose(fp);
+            return true;
         }
 
-        void load_words(const char *filename)
+        bool load_words(const char *filename)
         {
             FILE *fp = fopen(filename, "r");
             if (!fp)
             {
-                // TODO: raise exception here
-                return;
+                return false;
             }
 
             const int buf_len = 48;
@@ -223,6 +222,7 @@ namespace rmmseg
             }
         
             fclose(fp);
+            return true;
         }
     }
 }

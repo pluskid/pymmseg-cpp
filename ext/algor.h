@@ -47,7 +47,8 @@ namespace rmmseg
          * value will be set to -1 to indicate it is
          * a tmp word. */
         Word *get_tmp_word();
-        std::vector<Word> m_tmp_words;
+        static const int max_tmp_words = 48; /* related to max_word_length */
+        Word m_tmp_words[max_tmp_words];
         int m_tmp_words_i;
     };
 }

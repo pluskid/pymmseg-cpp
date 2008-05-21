@@ -1,4 +1,5 @@
 #include <cctype>
+#include <cassert>
 
 #include "rules.h"
 #include "algor.h"
@@ -164,8 +165,10 @@ namespace rmmseg
 
     Word *Algorithm::get_tmp_word()
     {
-        if (m_tmp_words_i >= m_tmp_words.capacity())
-            m_tmp_words.reserve(m_tmp_words.capacity()*2+1);
+        if (m_tmp_words_i >= max_tmp_words)
+        {
+            assert(0 == "BUG: max tmp words exceeded");
+        }
         return &m_tmp_words[m_tmp_words_i++];
     }
 
@@ -200,7 +203,8 @@ namespace rmmseg
             word = get_tmp_word();
             word->nbytes = next_char();
             word->length = -1;
-            strncpy(word->text, m_text+m_pos, word->nbytes+1);
+            strncpy(word->text, m_text+m_pos, word->nbytes);
+            word->text[word->nbytes] = '\0';
             words.push_back(word);
         }
         return words;

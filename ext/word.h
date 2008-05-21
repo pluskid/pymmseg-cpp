@@ -22,17 +22,21 @@ namespace rmmseg
      * length: number of characters (not bytes).
      * freq: the frequency of the word.
      */
-    inline Word *make_word(const char *text, int length=1, int freq=0)
+    inline Word *make_word(const char *text, int length=1,
+                           int freq=0, int nbytes=-1)
     {
         if (freq > USHRT_MAX)
             freq = USHRT_MAX;   /* avoid overflow */
+        if (nbytes == -1)
+            nbytes = strlen(text);
         Word *w = static_cast<Word *>(pool_alloc(sizeof(Word)
-                                                 + strlen(text)+1
+                                                 + nbytes+1
                                                  - word_embed_len));
         w->nbytes = std::strlen(text);
         w->length = length;
         w->freq = freq;
-        std::strcpy(w->text, text);
+        std::strncpy(w->text, text, nbytes);
+        w->text[nbytes] = '\0';
         return w;
     }
 }
