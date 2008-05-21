@@ -2,7 +2,7 @@
 
 #include "token.h"
 #include "dict.h"
-#include "complex.h"
+#include "algor.h"
 
 using namespace std;
 
@@ -40,6 +40,27 @@ extern "C" {
     }
 
     static VALUE cToken;
+    static VALUE tk_create(const char* base, const rmmseg::Token &t)
+    {
+        Token *tk = (Token *)malloc(sizeof(Token));
+        tk->text = rb_str_new(t.text, t.length);
+        tk->start = t.text-base;
+        tk->end = tk->start + t.length;
+        return Data_Wrap_Struct(cToken,
+                                (RUBY_DATA_FUNC)tk_mark,
+                                (RUBY_DATA_FUNC)tk_free,
+                                tk);
+    }
+
+    /*********************
+     * Algorithm Class
+     *********************/
+    struct Algorithm
+    {
+        VALUE text;             // hold to avoid being garbage collected
+        rmmseg::Algorithm *algor;
+    };
+
 
     void Init_rmmseg()
     {
