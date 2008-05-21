@@ -42,7 +42,10 @@ module RMMSeg
         if tok.nil?
           return nil
         else
-          return ::Ferret::Analysis::Token.new(tok.text, tok.start, tok.end)
+          @token.text = tok.text
+          @token.start = tok.start
+          @token.end = tok.end
+          return @token
         end
       end
       
@@ -53,6 +56,7 @@ module RMMSeg
 
       # Set the text to be tokenized
       def text=(str)
+        @token = ::Ferret::Analysis::Token.new("", 0, 0)
         @text = str
         @algor = Algorithm.new(@text)
       end
