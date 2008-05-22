@@ -68,6 +68,7 @@ extern "C" {
 
     static void tk_mark(Token *t)
     {
+        // start and end are Fixnums, no need to mark
         rb_gc_mark(t->text);
     }
     static void tk_free(Token *t)

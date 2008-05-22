@@ -31,7 +31,9 @@ module RMMSeg
       #
       # except the first number is not the frequency, but the number of
       # characters (not number of bytes) in the word.
-      # 
+      #
+      # There's a script (convert.rb) in the tools directory that can be used
+      # to convert and normalize dictionaries.
       attr_accessor :dictionaries
 
       # Add a user defined dictionary, +type+ can be

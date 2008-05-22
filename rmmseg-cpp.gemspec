@@ -2,13 +2,14 @@
 spec = Gem::Specification.new do |s|
   s.platform         =   Gem::Platform::RUBY
   s.name             =   "rmmseg-cpp"
-  s.version          =   "0.2.2"
+  s.version          =   "0.2.3"
   s.author           =   "pluskid"
   s.email            =   "pluskid@gmail.com"
   s.summary          =   "A high performance package for doing Chinese word segmentation."
   s.files            =   Dir.glob('lib/**/*.rb')  +
                              Dir.glob('ext/rmmseg/*.{cpp,h}') +
                              Dir.glob('data/*')               +
+                             Dir.glob('tools/*.rb')           +
                              ['README', 'ext/rmmseg/extconf.rb']
   s.require_path     =   'lib'
   s.extensions      <<   'ext/rmmseg/extconf.rb'
