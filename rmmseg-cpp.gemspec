@@ -19,3 +19,4 @@ spec = Gem::Specification.new do |s|
                          '--line-numbers'
   s.extra_rdoc_files =   ['README']
 end
+
