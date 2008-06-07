@@ -42,7 +42,7 @@ module RMMSeg
         @dictionaries << [type, path]
       end
 
-      def load_dictionaries
+      def load_dictionaries()
         @dictionaries.each do |type, path|
           if type == :chars
             load_chars(path)

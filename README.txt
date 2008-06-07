@@ -21,7 +21,43 @@ when you use the complex algorithm.
 
 == SYNOPSIS:
 
-FIXME
+=== A simple script
+
+rmmseg-cpp provides a simple script, which can read the text from
+standard input and print the segmented result to standard output. Try
+<tt>rmmseg -h</tt> for help on the options.
+
+=== In a normal Ruby program
+
+To use rmmseg-cpp in normal Ruby program, first load the package and
+init by loading the dictionaries:
+
+  require 'rubygems'
+  require 'rmmseg'
+
+  RMMSeg::Dictionary.load_dictionaries
+
+Then create a +Algorithm+ object and call +next_token+ until got a
++nil+:
+
+  algor = RMMSeg::Algorithm.new(text)
+  loop do
+    tok = algor.next_token
+    break if tok.nil?
+    puts "#{tok.text} [#{tok.start}..#{tok.end}]"
+  end
+
+=== With Ferret
+
+To use rmmseg-cpp with Ferret, just use the analyzer provided:
+
+  analyzer = RMMSeg::Ferret::Analyzer.new { |tokenizer|
+    Ferret::Analysis::LowerCaseFilter.new(tokenizer)
+  }
+
+  index = Ferret::Index::Index.new(:analyzer => analyzer)
+
+See <tt>misc/ferret_example.rb</tt> for a complete example.
 
 == REQUIREMENTS:
 

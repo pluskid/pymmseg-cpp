@@ -25,7 +25,7 @@ extern "C" {
      * Dictionary module
      *********************/
     static VALUE mDictionary;
-    
+
     static VALUE dic_load_chars(VALUE mod, VALUE path)
     {
         if (rmmseg::dict::load_chars(RSTRING(path)->ptr))
@@ -138,7 +138,7 @@ extern "C" {
         mem = malloc(sizeof(rmmseg::Algorithm));
         algor->algor = new(mem) rmmseg::Algorithm(RSTRING(text)->ptr,
                                                   RSTRING(text)->len);
-        
+
         return Data_Wrap_Struct(klass,
                                 (RUBY_DATA_FUNC)algor_mark,
                                 (RUBY_DATA_FUNC)algor_free,
@@ -161,6 +161,7 @@ extern "C" {
         mRMMSeg = rb_define_module("RMMSeg");
 
         mDictionary = rb_define_module_under(mRMMSeg, "Dictionary");
+
         rb_define_singleton_method(mDictionary, "load_chars", (RUBY_METHOD)dic_load_chars, 1);
         rb_define_singleton_method(mDictionary, "load_words", (RUBY_METHOD)dic_load_words, 1);
         rb_define_singleton_method(mDictionary, "load_add", (RUBY_METHOD)dic_add, 3);
