@@ -1,4 +1,4 @@
-== 1.0.0 / 2008-06-07
+== 0.2.5 / 2008-06-07
 
-* 1 major enhancement
-  * Birthday!
+* Created homepage on Rubyforge.
+* Gem can be installed directly from Rubyforge now.
