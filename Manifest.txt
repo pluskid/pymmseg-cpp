@@ -21,6 +21,7 @@ lib/rmmseg.rb
 lib/rmmseg/dictionary.rb
 lib/rmmseg/ferret.rb
 misc/convert.rb
+misc/ferret_example.rb
 spec/rmmseg_spec.rb
 spec/spec_helper.rb
 tasks/ann.rake
