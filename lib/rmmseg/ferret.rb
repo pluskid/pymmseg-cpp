@@ -1,4 +1,3 @@
-require 'singleton'
 require 'rubygems'
 require 'rmmseg'
 require 'ferret'

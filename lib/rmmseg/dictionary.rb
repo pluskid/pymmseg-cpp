@@ -42,6 +42,9 @@ module RMMSeg
         @dictionaries << [type, path]
       end
 
+      # Load dictionaries. Call this method after set up the path of the
+      # dictionaries needed to load and before any Algorithm object is
+      # created.
       def load_dictionaries()
         @dictionaries.each do |type, path|
           if type == :chars

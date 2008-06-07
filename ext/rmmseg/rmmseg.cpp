@@ -26,18 +26,48 @@ extern "C" {
      *********************/
     static VALUE mDictionary;
 
+    /*
+     * Load a character dictionary.
+     *
+     * call-seq:
+     *   load_chars(path)    -> status
+     *
+     * Return +true+ if loaded successfully, +false+ otherwise.
+     */ 
     static VALUE dic_load_chars(VALUE mod, VALUE path)
     {
         if (rmmseg::dict::load_chars(RSTRING(path)->ptr))
             return Qtrue;
         return Qfalse;
     }
+
+    /*
+     * Load a word dictionary.
+     *
+     * call-seq:
+     *   load_words(path)    -> status
+     *
+     * Return +true+ if loaded successfully, +false+ otherwise.
+     */ 
     static VALUE dic_load_words(VALUE mod, VALUE path)
     {
         if (rmmseg::dict::load_words(RSTRING(path)->ptr))
             return Qtrue;
         return Qfalse;
     }
+
+    /*
+     * Add a word to the in-memory dictionary.
+     *
+     * call-seq:
+     *   add(word, length, freq)
+     *
+     * - +word+ is a String.
+     * - +length+ is number of characters (not number of bytes) of the
+     *   word to be added.
+     * - +freq+ is the frequency of the word. This is only used when
+     *   it is a one-character word.
+     */ 
     static VALUE dic_add(VALUE mod, VALUE word, VALUE len, VALUE freq)
     {
         const char *str = RSTRING(word)->ptr;
@@ -46,6 +76,16 @@ extern "C" {
         rmmseg::dict::add(w);
         return Qnil;
     }
+
+    /*
+     * Check whether one word is included in the dictionary.
+     *
+     * call-seq:
+     *   has_word?(word)    -> result
+     *
+     * Return +true+ if the word is included in the dictionary,
+     * +false+ otherwise.
+     */ 
     static VALUE dic_has_word(VALUE mod, VALUE word)
     {
         const char *str = RSTRING(word)->ptr;
@@ -76,16 +116,39 @@ extern "C" {
         free(t);
     }
 
+    /*
+     * Get the text held by this token.
+     *
+     * call-seq:
+     *   text()    -> text
+     *   
+     */
     static VALUE tk_text(VALUE self)
     {
         Token *tk = (Token *)DATA_PTR(self);
         return tk->text;
     }
+
+    /*
+     * Get the start position of this token.
+     *
+     * call-seq:
+     *   start()    -> start_pos
+     *
+     */
     static VALUE tk_start(VALUE self)
     {
         Token *tk = (Token *)DATA_PTR(self);
         return tk->start;
     }
+
+    /*
+     * Get the end position of this token.
+     *
+     * call-seq:
+     *   end()    -> end_pos
+     *
+     */
     static VALUE tk_end(VALUE self)
     {
         Token *tk = (Token *)DATA_PTR(self);
@@ -130,6 +193,14 @@ extern "C" {
     }
 
     static VALUE cAlgorithm;
+
+    /*
+     * Create an Algorithm object to do segmenting on +text+.
+     *
+     * call-seq:
+     *   new(text)    -> algorithm
+     *   
+     */ 
     static VALUE algor_create(VALUE klass, VALUE text)
     {
         Algorithm *algor = ALLOC(Algorithm);
@@ -144,6 +215,15 @@ extern "C" {
                                 (RUBY_DATA_FUNC)algor_free,
                                 algor);
     }
+
+    /*
+     * Get next token.
+     *
+     * call-seq:
+     *   next_token()   -> token
+     *
+     * Return +nil+ if no more token available.
+     */ 
     static VALUE algor_next_token(VALUE self)
     {
         Algorithm *algor = (Algorithm *)DATA_PTR(self);
@@ -157,24 +237,25 @@ extern "C" {
 
     void Init_rmmseg()
     {
-        typedef VALUE (*RUBY_METHOD) (...);
         mRMMSeg = rb_define_module("RMMSeg");
 
+        /* Manage dictionaries used by rmmseg. */
         mDictionary = rb_define_module_under(mRMMSeg, "Dictionary");
+        rb_define_singleton_method(mDictionary, "load_chars", RUBY_METHOD_FUNC(dic_load_chars), 1);
+        rb_define_singleton_method(mDictionary, "load_words", RUBY_METHOD_FUNC(dic_load_words), 1);
+        rb_define_singleton_method(mDictionary, "add", RUBY_METHOD_FUNC(dic_add), 3);
+        rb_define_singleton_method(mDictionary, "has_word?", RUBY_METHOD_FUNC(dic_has_word), 1);
 
-        rb_define_singleton_method(mDictionary, "load_chars", (RUBY_METHOD)dic_load_chars, 1);
-        rb_define_singleton_method(mDictionary, "load_words", (RUBY_METHOD)dic_load_words, 1);
-        rb_define_singleton_method(mDictionary, "load_add", (RUBY_METHOD)dic_add, 3);
-        rb_define_singleton_method(mDictionary, "has_word?", (RUBY_METHOD)dic_has_word, 1);
-
+        /* A Token hold the text and related position information. */
         cToken = rb_define_class_under(mRMMSeg, "Token", rb_cObject);
         rb_undef_method(rb_singleton_class(cToken), "new");
-        rb_define_method(cToken, "text", (RUBY_METHOD)tk_text, 0);
-        rb_define_method(cToken, "start", (RUBY_METHOD)tk_start, 0);
-        rb_define_method(cToken, "end", (RUBY_METHOD)tk_end, 0);
+        rb_define_method(cToken, "text", RUBY_METHOD_FUNC(tk_text), 0);
+        rb_define_method(cToken, "start", RUBY_METHOD_FUNC(tk_start), 0);
+        rb_define_method(cToken, "end", RUBY_METHOD_FUNC(tk_end), 0);
 
+        /* An Algorithm object use the MMSEG algorithm to do segmenting. */
         cAlgorithm = rb_define_class_under(mRMMSeg, "Algorithm", rb_cObject);
-        rb_define_singleton_method(cAlgorithm, "new", (RUBY_METHOD)algor_create, 1);
-        rb_define_method(cAlgorithm, "next_token", (RUBY_METHOD)algor_next_token, 0);
+        rb_define_singleton_method(cAlgorithm, "new", RUBY_METHOD_FUNC(algor_create), 1);
+        rb_define_method(cAlgorithm, "next_token", RUBY_METHOD_FUNC(algor_next_token), 0);
     }
 }

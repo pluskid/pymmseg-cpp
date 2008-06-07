@@ -2,3 +2,4 @@
 
 * Created homepage on Rubyforge.
 * Gem can be installed directly from Rubyforge now.
+* Added rdoc for native extensions.
