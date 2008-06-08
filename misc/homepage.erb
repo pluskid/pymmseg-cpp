@@ -2,8 +2,6 @@
 <%
   $title = "rmmseg-cpp Homepage"
   $authors = { 'pluskid' => 'http://pluskid.lifegoo.com' }
-
-  $unindent = '  '
 %>
 
 <% chapter "Introduction" do %> 
@@ -64,10 +62,13 @@
       <% end %>
     
       The source code of rmmseg-cpp is hosted at
-      "GitHub":http://github.com/pluskid/rmmseg-cpp/. You can get clone the source
-      code, build and install the gem manually:
+      "GitHub":http://github.com/pluskid/rmmseg-cpp/. You can get the
+      source code by git clone:
 
         git clone git://github.com/pluskid/rmmseg-cpp.git
+
+      then you can use Rake to build and install the gem:
+
         cd rmmseg-cpp
         rake gem:install
 

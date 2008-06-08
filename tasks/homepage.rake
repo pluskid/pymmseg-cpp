@@ -1,7 +1,7 @@
 namespace :homepage do
   desc 'generate homepage'
   task :generate do
-    sh "cd misc && gerbil html homepage.erb > homepage.html"
+    sh "cd misc && gerbil -u html homepage.erb > homepage.html"
   end
 
   desc 'publish homepage to rubyforge'
