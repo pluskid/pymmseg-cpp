@@ -18,6 +18,7 @@ namespace :gem do
     end
 
     rf = RubyForge.new
+    rf.configure
     puts 'Logging in'
     rf.login
 

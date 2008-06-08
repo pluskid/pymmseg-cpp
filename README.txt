@@ -4,14 +4,20 @@ rmmseg-cpp
 
 == DESCRIPTION:
 
-rmmseg-cpp is a re-written of RMMSeg in C++. The interface is almost
-identical to RMMSeg but the performance is much better. This gem
-is always preferable in production use.
+rmmseg-cpp is a high performance Chinese word segmentation utility for
+Ruby. It features full "Ferret":http://ferret.davebalmain.com/ integration
+as well as support for normal Ruby program usage.
 
-RMMSeg (http://rmmseg.rubyforge.org) is a Chinese word segmentation library
-written for and in Ruby. It features full integration with Ruby. However, 
-its performance (both time and memory) is terrible in some cases, especially
-when you use the complex algorithm.
+rmmseg-cpp is a re-written of the original
+RMMSeg(http://rmmseg.rubyforge.org/) gem in C++. RMMSeg is written
+in pure Ruby. Though I tried hard to tweak RMMSeg, it just consumes
+lots of memory and the segmenting process is rather slow.
+
+The interface is almost identical to RMMSeg but the performance is
+much better. This gem is always preferable in production
+use. However, if you want to understand how the MMSEG segmenting
+algorithm works, the source code of RMMSeg is a better choice than
+this.
 
 == FEATURES/PROBLEMS:
 

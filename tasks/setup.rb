@@ -83,7 +83,7 @@ PROJ = OpenStruct.new(
 
   # Rubyforge
   :rubyforge => OpenStruct.new(
-    :name => "\000"
+    :name => "rmmseg-cpp"
   ),
 
   # Rspec
