@@ -1,6 +1,6 @@
 History.txt
 Manifest.txt
-README.txt
+README
 Rakefile
 bin/rmmseg
 data/chars.dic
@@ -22,12 +22,15 @@ lib/rmmseg/dictionary.rb
 lib/rmmseg/ferret.rb
 misc/convert.rb
 misc/ferret_example.rb
+misc/homepage.erb
+misc/homepage.html
 spec/rmmseg_spec.rb
 spec/spec_helper.rb
 tasks/ann.rake
 tasks/bones.rake
 tasks/gem.rake
 tasks/git.rake
+tasks/homepage.rake
 tasks/manifest.rake
 tasks/notes.rake
 tasks/post_load.rake
