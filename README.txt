@@ -5,7 +5,7 @@ rmmseg-cpp
 == DESCRIPTION:
 
 rmmseg-cpp is a re-written of RMMSeg in C++. The interface is almost
-identical to RMMSeg but the performance is much better. This package
+identical to RMMSeg but the performance is much better. This gem
 is always preferable in production use.
 
 RMMSeg (http://rmmseg.rubyforge.org) is a Chinese word segmentation library

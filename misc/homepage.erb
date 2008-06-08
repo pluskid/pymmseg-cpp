@@ -1,0 +1,167 @@
+<%# -*- mode: text; coding: utf-8 -*- %>
+<%
+  $title = "rmmseg-cpp Homepage"
+  $authors = { 'pluskid' => 'http://pluskid.lifegoo.com' }
+
+  $unindent = '  '
+%>
+
+<% chapter "Introduction" do %> 
+
+  rmmseg-cpp is a high performance Chinese word segmentation utility for
+  Ruby. It features full "Ferret":http://ferret.davebalmain.com/ integration
+  as well as support for normal Ruby program usage.
+
+  rmmseg-cpp is a re-written of the original
+  "RMMSeg":http://rmmseg.rubyforge.org/ gem in C++. RMMSeg is written
+  in pure Ruby. Though I tried hard to tweak RMMSeg, it just consumes
+  lots of memory and the segmenting process is rather slow.
+
+  The interface is almost identical to RMMSeg but the performance is
+  much better. This gem is always preferable in production
+  use. However, if you want to understand how the MMSEG segmenting
+  algorithm works, the source code of RMMSeg is a better choice than
+  this.
+
+<% end %>
+
+<% chapter "Setup" do %>
+  <% section "Requirements" do %>
+
+    Your system needs the following software to run RMMSeg.
+
+    |_. Software                  |_. Notes                            |
+    | "Ruby":http://ruby-lang.org | Version 1.8.x is required          |
+    | RubyGems                    | rmmseg-cpp is released as a gem    |
+    | g++                         | Used to build the native extension |
+
+  <% end %>
+
+  <% section "Installation" do %>
+    <% section "Using RubyGems" do %>
+      To install the gem remotely from "RubyForge":http://rubyforge.org:
+
+        sudo gem install rmmseg-cpp
+
+      Or you can download the gem file manually from
+      "RubyForge":http://rubyforge.org/projects/rmmseg-cpp/ and
+      install it locally:
+
+        sudo gem install --local rmmseg-cpp-x.y.z.gem
+
+    <% end %>
+
+    <% section "From Git" do %>
+      To build the gem manually from the latest source code. You'll
+      need to have @git@ and @rake@ installed.
+
+      <% warning "The latest source code may be unstable" do %>
+
+        While I tried to avoid such kind of problems, the source
+        code from the repository might still be broken sometimes.
+        It is generally not recommended to follow the source code.
+
+      <% end %>
+    
+      The source code of rmmseg-cpp is hosted at
+      "GitHub":http://github.com/pluskid/rmmseg-cpp/. You can get clone the source
+      code, build and install the gem manually:
+
+        git clone git://github.com/pluskid/rmmseg-cpp.git
+        cd rmmseg-cpp
+        rake gem:install
+
+    <% end %>
+  <% end %>
+<% end %>
+
+<% chapter "Usage" do %>
+   
+  <% section "Stand Alone rmmseg" do %>
+    rmmseg-cpp comes with a script @rmmseg@. To get the basic usage, just execute it with @-h@ option:
+      
+      rmmseg -h
+
+    It reads from STDIN and print result to STDOUT. Here is a real
+    example:
+
+      $ echo "我们都喜欢用 Ruby" | rmmseg
+      我们 都 喜欢 用 Ruby
+
+  <% end %>
+
+  <% section "Use in Ruby program" do %>
+
+    <% section "Initialize" do %>
+
+      To use rmmseg-cpp in Ruby program, you'll first load it with RubyGems:
+
+        require 'rubygems'
+        require 'rmmseg'
+
+      Then you may customize the dictionaries used by rmmseg-cpp
+      (see "the rdoc":http://rmmseg-cpp.rubyforge.org/rdoc/classes/RMMSeg/Dictionary.html on
+      how to add your own dictionaries) and load all dictionaries:
+
+        RMMSeg::Dictionary.load_dictionaries
+
+      Now rmmseg-cpp will be ready to do segmenting.    
+
+    <% end %>
+
+    <% section "Ferret Integration" do %>
+
+      To use rmmseg-cpp with Ferret, you'll need to @require@ the
+      Ferret support of rmmseg-cpp:
+  
+        require 'rmmseg/ferret'
+      
+rmmseg-cpp comes with a ready to use Ferret analyzer:
+  
+        analyzer = RMMSeg::Ferret::Analyzer.new { |tokenizer|
+          Ferret::Analysis::LowerCaseFilter.new(tokenizer)
+        }
+        index = Ferret::Index::Index.new(:analyzer => analyzer)
+  
+A complete example can be found in @misc/ferret_example.rb@. The result
+of running that example is shown in <%= xref "Ferret Example Screenshot" %>.
+  
+      <% figure "Ferret Example Screenshot" do %>
+        !http://pluskid.lifegoo.com/wp-content/uploads/2008/02/rmmseg.png!
+      <% end %>
+    
+    <% end %>
+
+    <% section "Normal Ruby program" do %>
+    
+      rmmseg-cpp can also be used in normal Ruby programs. Just create
+      an @Algorithm@ object and call @next_token@ until a @nil@ is returned:
+
+        algor = RMMSeg::Algorithm.new(text)
+        loop do
+          tok = algor.next_token
+          break if tok.nil?
+          puts "#{tok.text} [#{tok.start}..#{tok.end}]"
+        end
+        
+    <% end %>
+  <% end %>
+
+<% end %>
+
+<% chapter "Who use it" do %>
+  <% tip "Expand this list" do %>
+    If you used rmmseg-cpp and would like your project to
+    appear in this list, please "contact me":mailto:pluskid@gmail.com.
+  <% end %>
+
+  * "JavaEye":http://www.javaeye.com/: One of the biggest software developper
+    community in China.
+<% end %>
+
+<% chapter "Resources" do %>
+  * "Project Home":http://rubyforge.org/projects/rmmseg-cpp/: The Project page at RubyForge.
+  * "RDoc of rmmseg-cpp":http://rmmseg-cpp.rubyforge.org/rdoc/index.html: The auto generated rdoc of RMMSeg.
+  * "Free Mind":http://pluskid.lifegoo.com/: The author's blog.
+  * "Author's Email":mailto:pluskid@gmail.com: Contact me if you have any problem.
+<% end %>
