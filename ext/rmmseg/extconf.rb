@@ -1,7 +1,8 @@
 require 'mkmf'
 
 if RUBY_PLATFORM =~ /darwin/
-  CONFIG['LDSHARED'] = 'g++ --dynamiclib -flat_namespace -undefined suppress' 
+#  CONFIG['LDSHARED'] = 'g++ --dynamiclib -flat_namespace -undefined suppress' 
+  CONFIG['LDSHARED'] = 'g++ --dynamiclib'
 elsif RUBY_PLATFORM =~ /linux/
   CONFIG['LDSHARED'] = 'g++ -shared'  
 end
