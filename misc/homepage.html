@@ -1,13 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="date" content="08 June 2008"/>
+    <meta name="date" content="24 July 2008"/>
     <meta name="author" content="pluskid"/>
-    <meta name="generator" content="Gerbil 3.0.1"/>
+    <meta name="generator" content="Gerbil 3.1.0"/>
     <title>rmmseg-cpp Homepage</title>
 
+    <style type="text/css" media="all">
+    <!--
+      .icon-warning {
+        display: list-item;
+        list-style-image: url(data:image/png;base64,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);
+        list-style-position: inside;
+      }
+      .icon-tip {
+        display: list-item;
+        list-style-image: url(data:image/png;base64,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);
+        list-style-position: inside;
+      }
+    -->
+    </style>
+
     <style type="text/css" media="screen">
+    <!--
       body
 {
   color              : #000000;
@@ -22,6 +39,70 @@
   blockquote
   {
     font-family      : Cambria, Georgia, serif;
+  }
+
+  blockquote
+  {
+    margin           : 1em;
+    border           : 5px dotted #ddd;
+    padding          : 1em;
+  }
+
+  hr
+  {
+    height           : 0;
+    border           : 0;
+    border-top       : 2px solid #FF0000;
+  }
+
+/* source code */
+
+  tt,
+  code,
+  pre
+  {
+    font-family      : Consolas, "Lucida Console", monospace;
+  }
+
+  tt
+  {
+    font-weight      : bold;
+    color            : #A52A2A;
+    background-color : #FFFAF0;
+  }
+
+  /* output of the syntax coloring library */
+  .code
+  {
+    background-color : #FFFFF0;
+  }
+
+  pre
+  {
+    cursor           : text;
+    line-height      : normal;
+    border           : 1px dashed #C0C0C0;
+    background-color : #F5FFDF;
+    padding          : 1em;
+    overflow         : auto;
+  }
+
+/* hyperlinks */
+
+  a > img
+  {
+    border           : none;
+  }
+
+  a img
+  {
+    _border          : none; /* for IE6 */
+  }
+
+  a.here:link,
+  a.here:visited
+  {
+    color            : #000000;
   }
 
 /* lists */
@@ -105,7 +186,7 @@
 
   table
   {
-    border           : none;
+    border-collapse  : collapse; /* no spacing between cell borders */
     margin           : auto; /* center horizontally */
     margin-top       : 1em;
   }
@@ -114,7 +195,7 @@
   td
   {
     padding          : 1em;
-    border           : 1px solid #C0C0C0;
+    border           : 1px solid #bbb;
     vertical-align   : top;
     background-color : inherit;
   }
@@ -125,6 +206,14 @@
   }
 
 /* document structure */
+
+  .nav
+  {
+    text-align       : center;
+    border-bottom    : thick dotted #DCDCDC;
+    padding-bottom   : 1em;
+    margin-bottom    : 4em;
+  }
 
   #header
   {
@@ -157,34 +246,34 @@
     margin-top       : 4em;
   }
 
-  #abstract
+  #Abstract
   {
     margin-bottom    : 5em;
   }
 
-  #toc li
+  #Contents li
   {
     list-style-type  : none;
   }
 
-  #toc li ul
+  #Contents li ul
   {
     padding-bottom   : 1em;
     border-left      : thick solid #F5F5F5;
     _border-left     : none; /* for IE6 */
   }
 
-  #toc li ul:hover
+  #Contents li ul:hover
   {
     border-color     : #DCDCDC;
   }
 
-  #toc > ul
+  #Contents > ul
   {
     padding-left     : 1em;
   }
 
-  #references
+  #References
   {
     margin-top       : 5em;
   }
@@ -194,6 +283,11 @@
     border-top       : thick dotted #DCDCDC;
     padding-top      : 1em;
     text-align       : center;
+  }
+
+  #footer-credits
+  {
+    margin-top       : 2em;
   }
 
 /* document nodes */
@@ -309,19 +403,62 @@
 
       body
 {
-  margin             : auto;
-  padding            : 0.5em;
-  max-width          : 36em;
+  margin            : auto;
+  padding           : 0.5em;
+  max-width         : 36em;
+}
+
+/* hyperlinks */
+
+  a:link
+  {
+    color           : #0000FF;
+    text-decoration : none;
+  }
+
+  a:visited
+  {
+    color           : #800080;
+    text-decoration : none;
+  }
+
+  a:hover
+  {
+    color           : #FF0000;
+    text-decoration : underline;
+  }
+
+  a:target
+  {
+    color           : #FF0000;
+    font-weight     : bold;
+  }
+
+    -->
+    </style>
+    <style type="text/css" media="print">
+    <!--
+      body
+{
+  color              : #000000;
+  background-color   : #FFFFFF;
+  line-height        : 1.5em;
+  font-family        : Calibri, Verdana, sans-serif;
 }
 
 /* emphasis */
 
+  em,
+  blockquote
+  {
+    font-family      : Cambria, Georgia, serif;
+  }
+
   blockquote
   {
     margin           : 1em;
-    border           : 5px dotted #C0C0C0;
+    border           : 5px dotted #ddd;
     padding          : 1em;
-    color            : #444;
   }
 
   hr
@@ -363,22 +500,6 @@
     overflow         : auto;
   }
 
-  /*
-  pre:hover
-  {
-    border           : none;
-    position         : fixed;
-    z-index          : 1;
-    margin           : 0;
-    top              : 0;
-    left             : 0;
-    right            : 0;
-    bottom           : 0;
-    overflow         : auto;
-    cursor           : text;
-  }
-  */
-
 /* hyperlinks */
 
   a > img
@@ -386,53 +507,15 @@
     border           : none;
   }
 
-  a:link
+  a img
   {
-    color            : #0000FF;
-    text-decoration  : none;
+    _border          : none; /* for IE6 */
   }
 
-  a:visited
+  a.here:link,
+  a.here:visited
   {
-    color            : #9400D3;
-    text-decoration  : none;
-  }
-
-  a:hover
-  {
-    color            : #FF0000;
-    text-decoration  : underline;
-  }
-
-  a:target
-  {
-    color            : #FF0000;
-    font-weight      : bold;
-  }
-
-  a.toc:link,
-  a.toc:visited
-  {
-    text-decoration  : none;
-    z-index          : 1;
-  }
-
-    </style>
-    <style type="text/css" media="print">
-      body
-{
-  color              : #000000;
-  background-color   : #FFFFFF;
-  line-height        : 1.5em;
-  font-family        : Calibri, Verdana, sans-serif;
-}
-
-/* emphasis */
-
-  em,
-  blockquote
-  {
-    font-family      : Cambria, Georgia, serif;
+    color            : #000000;
   }
 
 /* lists */
@@ -516,7 +599,7 @@
 
   table
   {
-    border           : none;
+    border-collapse  : collapse; /* no spacing between cell borders */
     margin           : auto; /* center horizontally */
     margin-top       : 1em;
   }
@@ -525,7 +608,7 @@
   td
   {
     padding          : 1em;
-    border           : 1px solid #C0C0C0;
+    border           : 1px solid #bbb;
     vertical-align   : top;
     background-color : inherit;
   }
@@ -536,6 +619,14 @@
   }
 
 /* document structure */
+
+  .nav
+  {
+    text-align       : center;
+    border-bottom    : thick dotted #DCDCDC;
+    padding-bottom   : 1em;
+    margin-bottom    : 4em;
+  }
 
   #header
   {
@@ -568,34 +659,34 @@
     margin-top       : 4em;
   }
 
-  #abstract
+  #Abstract
   {
     margin-bottom    : 5em;
   }
 
-  #toc li
+  #Contents li
   {
     list-style-type  : none;
   }
 
-  #toc li ul
+  #Contents li ul
   {
     padding-bottom   : 1em;
     border-left      : thick solid #F5F5F5;
     _border-left     : none; /* for IE6 */
   }
 
-  #toc li ul:hover
+  #Contents li ul:hover
   {
     border-color     : #DCDCDC;
   }
 
-  #toc > ul
+  #Contents > ul
   {
     padding-left     : 1em;
   }
 
-  #references
+  #References
   {
     margin-top       : 5em;
   }
@@ -605,6 +696,11 @@
     border-top       : thick dotted #DCDCDC;
     padding-top      : 1em;
     text-align       : center;
+  }
+
+  #footer-credits
+  {
+    margin-top       : 2em;
   }
 
 /* document nodes */
@@ -722,17 +818,15 @@
 
   tt
   {
-    color            : inherit;
-    background-color : inherit;
-    font-weight      : normal;
+    background-color  : inherit;
+    font-weight       : normal;
   }
 
   pre,
   .code
   {
-    border           : none;
-    overflow         : visible;
-    background-color : inherit;
+    border            : none;
+    background-color  : inherit;
   }
 
 /* headings */
@@ -744,56 +838,63 @@
   h5,
   h6
   {
-    font-weight      : normal;
+    font-weight       : normal;
   }
 
 /* hyperlinks */
 
+  /* blend all hyperlinks with normal text */
   a:link,
-  a:visited,
-  a:active
+  a:visited
   {
-    color            : #0000FF;
-    font-weight      : bold;
-    text-decoration  : underline;
+    color             : #000000;
+    text-decoration   : none;
+  }
+
+  /* emphasize external and cross-reference hyperlinks */
+  a:not([href^="#"]):link,
+  a:not([href^="#"]):visited,
+  a.xref[title]:link,
+  a.xref[title]:visited
+  {
+    color             : #0000FF;
+    text-decoration   : underline;
+    font-weight       : bolder;
+  }
+
+  /* show URL of destination for external hyperlinks */
+  a:not([href^="#"]):after
+  {
+    content           : " " attr(href);
+    font-family       : Consolas, "Lucida Console", monospace;
+  }
+
+  /* show name of destination for cross-references */
+  a.xref[title]:after
+  {
+    content           : " " attr(title);
   }
 
   a:after
   {
-    content          : " " attr(href);
-    font-family      : Consolas, "Lucida Console", monospace;
-    font-weight      : normal;
-    font-size        : 90%;
-  }
-
-  a[href^="#"]:after
-  {
-    content          : "";
-  }
-
-  a[href^="#"]
-  {
-    color            : #A52A2A;
-    font-weight      : lighter;
-    text-decoration  : none;
-    font-style       : italic;
-  }
-
-  a.toc:link,
-  a.toc:visited
-  {
-    color            : inherit;
-    .color           : #000000; /* for IE6 and IE7 */
-    font-weight      : inherit;
-    text-decoration  : none;
-    font-style       : normal;
+    font-weight       : normal;
+    font-size         : smaller;
   }
 
 /* document structure */
 
+  .nav,
   #lof
   {
-    display          : none;
+    display           : none;
+  }
+
+  #Contents,
+  .part,
+  .chapter,
+  #References
+  {
+    page-break-before : always;
   }
 
 /* document nodes */
@@ -801,300 +902,234 @@
   .part    > .title > big,
   .chapter > .title > big
   {
-    padding-bottom   : 0.5em;
+    padding-bottom    : 0.5em;
   }
 
   .part    .title big,
   .chapter .title big
   {
-    _padding-bottom  : 0.5em; /* for IE6 */
+    _padding-bottom   : 0.5em; /* for IE6 */
   }
 
+    -->
     </style>
   </head>
   <body>
+    <div class="nav">
+      <a href="#Contents">Contents</a> &middot; <a href="#Figures">Figures</a> &middot; <a href="#Tips">Tips</a> &middot; <a href="#Warnings">Warnings</a>
+    </div>
+
+    <br style="display: none"/>
+    <hr style="display: none"/>
+    <br style="display: none"/>
+
     
     <div id="header">
     
       
-      <h1 class="title">rmmseg-cpp Homepage</h1>
+      <h1 class="title"><a class="here" href="#">rmmseg-cpp Homepage</a></h1>
       <h2 class="authors"><a href="http://pluskid.lifegoo.com">pluskid</a></h2>
-      <h3 class="date">08 June 2008</h3>
+      <h3 class="date">24 July 2008</h3>
     
     </div>
     
 
     
 
-    <div id="toc"><h1>Contents</h1> <ul><li>1&nbsp;&nbsp;<a id="a-606743378" href="#Introduction">Introduction</a></li><li>2&nbsp;&nbsp;<a id="a-606745468" href="#Setup">Setup</a><ul><li>2.1&nbsp;&nbsp;<a id="a-606746968" href="#Requirements">Requirements</a></li><li>2.2&nbsp;&nbsp;<a id="a-606749058" href="#Installation">Installation</a><ul><li>2.2.1&nbsp;&nbsp;<a id="a-606750658" href="#Using-RubyGems">Using RubyGems</a></li><li>2.2.2&nbsp;&nbsp;<a id="a-606752758" href="#From-Git">From Git</a></li></ul></li></ul></li><li>3&nbsp;&nbsp;<a id="a-606757618" href="#Usage">Usage</a><ul><li>3.1&nbsp;&nbsp;<a id="a-606759148" href="#Stand-Alone-rmmseg">Stand Alone rmmseg</a></li><li>3.2&nbsp;&nbsp;<a id="a-606761218" href="#Use-in-Ruby-program">Use in Ruby program</a><ul><li>3.2.1&nbsp;&nbsp;<a id="a-606762818" href="#Initialize">Initialize</a></li><li>3.2.2&nbsp;&nbsp;<a id="a-606764988" href="#Ferret-Integration">Ferret Integration</a></li><li>3.2.3&nbsp;&nbsp;<a id="a-606770598" href="#Normal-Ruby-program">Normal Ruby program</a></li></ul></li></ul></li><li>4&nbsp;&nbsp;<a id="a-606773598" href="#Who-use-it">Who use it</a></li><li>5&nbsp;&nbsp;<a id="a-606777358" href="#Resources">Resources</a></li></ul></div>
+    <br style="display: none"/>
+    <hr style="display: none"/>
+    <br style="display: none"/>
 
-    <div id="lof"><h1>Figures</h1> <ol><li><a id="a-606768368" href="#Ferret-Example-Screenshot">Ferret Example Screenshot</a></li></ol><h1>Tips</h1> <ol><li><a id="a-606775158" href="#Expand-this-list">Expand this list</a></li></ol><h1>Warnings</h1> <ol><li><a id="a-606754418" href="#The-latest-source-code-may-be-unstable">The latest source code may be unstable</a></li></ol></div>
+      <div id="Contents">
+        <h1 class="title"><a class="here" href="#Contents">Contents</a></h1>
+        <ul>
+          <li>1&nbsp;&nbsp;<a id="a-605866108" href="#Introduction">Introduction</a></li><li>2&nbsp;&nbsp;<a id="a-605878238" href="#Setup">Setup</a><ul><li>2.1&nbsp;&nbsp;<a id="a-605885468" href="#Requirements">Requirements</a></li><li>2.2&nbsp;&nbsp;<a id="a-605901638" href="#Installation">Installation</a><ul><li>2.2.1&nbsp;&nbsp;<a id="a-605907768" href="#Using-RubyGems">Using RubyGems</a></li><li>2.2.2&nbsp;&nbsp;<a id="a-605920388" href="#From-Git">From Git</a></li></ul></li></ul></li><li>3&nbsp;&nbsp;<a id="a-605936908" href="#Usage">Usage</a><ul><li>3.1&nbsp;&nbsp;<a id="a-605941618" href="#Stand-Alone-rmmseg">Stand Alone rmmseg</a></li><li>3.2&nbsp;&nbsp;<a id="a-605949158" href="#Use-in-Ruby-program">Use in Ruby program</a><ul><li>3.2.1&nbsp;&nbsp;<a id="a-605951388" href="#Initialize">Initialize</a></li><li>3.2.2&nbsp;&nbsp;<a id="a-605954648" href="#Ferret-Integration">Ferret Integration</a></li><li>3.2.3&nbsp;&nbsp;<a id="a-605963838" href="#Normal-Ruby-program">Normal Ruby program</a></li></ul></li></ul></li><li>4&nbsp;&nbsp;<a id="a-605971928" href="#Who-use-it">Who use it</a></li><li>5&nbsp;&nbsp;<a id="a-606002348" href="#Resources">Resources</a></li>
+
+        </ul>
+      </div>
+
+      <div id="lof"><h1 id="Figures" class="title"><a class="here" href="#Figures">Figures</a></h1> <ol><li><a id="a-605959898" href="#Ferret-Example-Screenshot">Ferret Example Screenshot</a></li></ol><h1 id="Tips" class="title"><a class="here" href="#Tips">Tips</a></h1> <ol><li><a id="a-605984048" href="#Expand-this-list">Expand this list</a></li></ol><h1 id="Warnings" class="title"><a class="here" href="#Warnings">Warnings</a></h1> <ol><li><a id="a-605927458" href="#The-latest-source-code-may-be-unstable">The latest source code may be unstable</a></li></ol></div>
+
+    <br style="display: none"/>
+    <hr style="display: none"/>
+    <br style="display: none"/>
 
     <div id="content">
 <div class="chapter">
   <h1 class="title">
     Chapter
-    <a class="toc" id="Introduction" href="#a-606743378">1</a>
+    <a class="list" id="Introduction" href="#a-605866108">1</a>
 
     <br/>
 
-    <big>Introduction</big>
+    <a class="here" href="#Introduction"><big>Introduction</big></a>
   </h1>
 
-  <div class="content"><p>rmmseg-cpp is a high performance Chinese word segmentation utility for
-Ruby. It features full <a href="http://ferret.davebalmain.com/">Ferret</a> integration
+  <div class="content"><p>rmmseg-cpp is a high performance Chinese word segmentation utility for<br />
+Ruby. It features full <a href="http://ferret.davebalmain.com/">Ferret</a> integration<br />
 as well as support for normal Ruby program usage.</p>
-
-
-	<p>rmmseg-cpp is a re-written of the original
-<a href="http://rmmseg.rubyforge.org/">RMMSeg</a> gem in C++. RMMSeg is written
-in pure Ruby. Though I tried hard to tweak RMMSeg, it just consumes
+<p>rmmseg-cpp is a re-written of the original<br />
+<a href="http://rmmseg.rubyforge.org/">RMMSeg</a> gem in C++. RMMSeg is written<br />
+in pure Ruby. Though I tried hard to tweak RMMSeg, it just consumes<br />
 lots of memory and the segmenting process is rather slow.</p>
-
-
-	<p>The interface is almost identical to RMMSeg but the performance is
-much better. This gem is always preferable in production
-use. However, if you want to understand how the MMSEG segmenting
-algorithm works, the source code of RMMSeg is a better choice than
+<p>The interface is almost identical to RMMSeg but the performance is<br />
+much better. This gem is always preferable in production<br />
+use. However, if you want to understand how the MMSEG segmenting<br />
+algorithm works, the source code of RMMSeg is a better choice than<br />
 this.</p></div>
-</div><div class="chapter">
+</div>
+<div class="chapter">
   <h1 class="title">
     Chapter
-    <a class="toc" id="Setup" href="#a-606745468">2</a>
+    <a class="list" id="Setup" href="#a-605878238">2</a>
 
     <br/>
 
-    <big>Setup</big>
+    <a class="here" href="#Setup"><big>Setup</big></a>
   </h1>
 
   <div class="content"><div class="section">
   <h2 class="title">
-    <a class="toc" id="Requirements" href="#a-606746968">2.1</a>&nbsp;&nbsp;Requirements
+    <a class="list" id="Requirements" href="#a-605885468">2.1</a>&nbsp;&nbsp;<a class="here" href="#Requirements">Requirements</a>
   </h2>
-  <div class="content">Your system needs the following software to run RMMSeg.
-
-
-	<table border="1">
-		<tr>
-			<th>Software                  </th>
-			<th>Notes                            </th>
-		</tr>
-		<tr>
-			<td> <a href="http://ruby-lang.org">Ruby</a> </td>
-			<td> Version 1.8.x is required          </td>
-		</tr>
-		<tr>
-			<td> RubyGems                    </td>
-			<td> rmmseg-cpp is released as a gem    </td>
-		</tr>
-		<tr>
-			<td> g++                         </td>
-			<td> Used to build the native extension </td>
-		</tr>
-	</table></div>
-</div><div class="section">
+  <div class="content"><p>Your system needs the following software to run RMMSeg.</p>
+<table border="1">
+	<tr>
+		<th>Software                  </th>
+		<th>Notes                            </th>
+	</tr>
+	<tr>
+		<td> <a href="http://ruby-lang.org">Ruby</a> </td>
+		<td> Version 1.8.x is required          </td>
+	</tr>
+	<tr>
+		<td> RubyGems                    </td>
+		<td> rmmseg-cpp is released as a gem    </td>
+	</tr>
+	<tr>
+		<td> g++                         </td>
+		<td> Used to build the native extension </td>
+	</tr>
+</table></div>
+</div><br />
+<div class="section">
   <h2 class="title">
-    <a class="toc" id="Installation" href="#a-606749058">2.2</a>&nbsp;&nbsp;Installation
+    <a class="list" id="Installation" href="#a-605901638">2.2</a>&nbsp;&nbsp;<a class="here" href="#Installation">Installation</a>
   </h2>
   <div class="content"><div class="section">
   <h3 class="title">
-    <a class="toc" id="Using-RubyGems" href="#a-606750658">2.2.1</a>&nbsp;&nbsp;Using RubyGems
+    <a class="list" id="Using-RubyGems" href="#a-605907768">2.2.1</a>&nbsp;&nbsp;<a class="here" href="#Using-RubyGems">Using RubyGems</a>
   </h3>
   <div class="content"><p>To install the gem remotely from <a href="http://rubyforge.org">RubyForge</a>:</p>
-
-
-	<pre>sudo gem install rmmseg-cpp</pre>
-
-
-	<p>Or you can download the gem file manually from
-<a href="http://rubyforge.org/projects/rmmseg-cpp/">RubyForge</a> and
+sudo gem install rmmseg-cpp
+<p>Or you can download the gem file manually from<br />
+<a href="http://rubyforge.org/projects/rmmseg-cpp/">RubyForge</a> and<br />
 install it locally:</p>
-
-
-	<pre>sudo gem install --local rmmseg-cpp-x.y.z.gem</pre></div>
-</div><div class="section">
+sudo gem install &#8212;local rmmseg-cpp-x.y.z.gem</div>
+</div><br />
+<div class="section">
   <h3 class="title">
-    <a class="toc" id="From-Git" href="#a-606752758">2.2.2</a>&nbsp;&nbsp;From Git
+    <a class="list" id="From-Git" href="#a-605920388">2.2.2</a>&nbsp;&nbsp;<a class="here" href="#From-Git">From Git</a>
   </h3>
-  <div class="content"><p>To build the gem manually from the latest source code. You&#8217;ll
+  <div class="content"><p>To build the gem manually from the latest source code. You&#8217;ll<br />
 need to have <strong>git</strong> and <strong>rake</strong> installed.</p>
+<p><div class="warning">
+  <p class="title"><a class="list" id="The-latest-source-code-may-be-unstable" href="#a-605927458">Warning 1</a>.&nbsp;&nbsp;<a class="here" href="#The-latest-source-code-may-be-unstable">The latest source code may be unstable</a></p>
 
-
-	<p><div class="warning">
-  <p class="title"><a class="toc" id="The-latest-source-code-may-be-unstable" href="#a-606754418">Warning 1</a>.&nbsp;&nbsp;The latest source code may be unstable</p>
-
-  <img src="data:image/png;base64,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
-" class="icon"/>
-
-  <div class="content">While I tried to avoid such kind of problems, the source
-code from the repository might still be broken sometimes.
+  <div class="content icon-warning">While I tried to avoid such kind of problems, the source<br />
+code from the repository might still be broken sometimes.<br />
 It is generally not recommended to follow the source code.</div>
-</div>The source code of rmmseg-cpp is hosted at
-<a href="http://github.com/pluskid/rmmseg-cpp/">GitHub</a>. You can get the
+</div>    <br />
+The source code of rmmseg-cpp is hosted at<br />
+<a href="http://github.com/pluskid/rmmseg-cpp/">GitHub</a>. You can get the<br />
 source code by git clone:</p>
-
-
-	<pre>git clone git://github.com/pluskid/rmmseg-cpp.git</pre>
-
-
-	<p>then you can use Rake to build and install the gem:</p>
-
-
-	<pre>cd rmmseg-cpp
-rake gem:install</pre></div>
+git clone git://github.com/pluskid/rmmseg-cpp.git
+<p>then you can use Rake to build and install the gem:</p>
+cd rmmseg-cpp
+rake gem:install</div>
 </div></div>
 </div></div>
 </div>
 <div class="chapter">
   <h1 class="title">
     Chapter
-    <a class="toc" id="Usage" href="#a-606757618">3</a>
+    <a class="list" id="Usage" href="#a-605936908">3</a>
 
     <br/>
 
-    <big>Usage</big>
+    <a class="here" href="#Usage"><big>Usage</big></a>
   </h1>
 
   <div class="content"><div class="section">
   <h2 class="title">
-    <a class="toc" id="Stand-Alone-rmmseg" href="#a-606759148">3.1</a>&nbsp;&nbsp;Stand Alone rmmseg
+    <a class="list" id="Stand-Alone-rmmseg" href="#a-605941618">3.1</a>&nbsp;&nbsp;<a class="here" href="#Stand-Alone-rmmseg">Stand Alone rmmseg</a>
   </h2>
-  <div class="content"><p>rmmseg-cpp comes with a script <strong>rmmseg</strong>. To get the basic usage, just execute it with <tt>-h</tt> option:</p>
-
-
-	<pre>rmmseg -h</pre>
-
-
-	<p>It reads from STDIN and print result to STDOUT. Here is a real
+  <div class="content"><p>rmmseg-cpp comes with a script <strong>rmmseg</strong>. To get the basic usage, just execute it with <tt>-h</tt> option:<br />
+  <br />
+  rmmseg -h</p>
+<p>It reads from STDIN and print result to STDOUT. Here is a real<br />
 example:</p>
-
-
-	<pre>$ echo "我们都喜欢用 Ruby" | rmmseg
-我们 都 喜欢 用 Ruby</pre></div>
-</div><div class="section">
+$ echo &#8220;我们都喜欢用 Ruby&#8221; | rmmseg
+我们 都 喜欢 用 Ruby</div>
+</div><br />
+<div class="section">
   <h2 class="title">
-    <a class="toc" id="Use-in-Ruby-program" href="#a-606761218">3.2</a>&nbsp;&nbsp;Use in Ruby program
+    <a class="list" id="Use-in-Ruby-program" href="#a-605949158">3.2</a>&nbsp;&nbsp;<a class="here" href="#Use-in-Ruby-program">Use in Ruby program</a>
   </h2>
   <div class="content"><div class="section">
   <h3 class="title">
-    <a class="toc" id="Initialize" href="#a-606762818">3.2.1</a>&nbsp;&nbsp;Initialize
+    <a class="list" id="Initialize" href="#a-605951388">3.2.1</a>&nbsp;&nbsp;<a class="here" href="#Initialize">Initialize</a>
   </h3>
   <div class="content"><p>To use rmmseg-cpp in Ruby program, you&#8217;ll first load it with RubyGems:</p>
-
-
-	<pre class="code">
+<pre class="code">
 require <span style="background-color:#fff0f0"><span style="color:#710">'</span><span style="color:#D20">rubygems</span><span style="color:#710">'</span></span>
 require <span style="background-color:#fff0f0"><span style="color:#710">'</span><span style="color:#D20">rmmseg</span><span style="color:#710">'</span></span>
 </pre>
-
-
-	<p>Then you may customize the dictionaries used by rmmseg-cpp
-(see <a href="http://rmmseg-cpp.rubyforge.org/rdoc/classes/RMMSeg/Dictionary.html">the rdoc</a> on
+<p>Then you may customize the dictionaries used by rmmseg-cpp<br />
+(see <a href="http://rmmseg-cpp.rubyforge.org/rdoc/classes/RMMSeg/Dictionary.html">the rdoc</a> on<br />
 how to add your own dictionaries) and load all dictionaries:</p>
-
-
-	<pre class="code">
+<pre class="code">
 <span style="color:#036; font-weight:bold">RMMSeg</span>::<span style="color:#036; font-weight:bold">Dictionary</span>.load_dictionaries
 </pre>
-
-
-	<p>Now rmmseg-cpp will be ready to do segmenting.</p></div>
-</div><div class="section">
+<p>Now rmmseg-cpp will be ready to do segmenting.</p></div>
+</div><br />
+<div class="section">
   <h3 class="title">
-    <a class="toc" id="Ferret-Integration" href="#a-606764988">3.2.2</a>&nbsp;&nbsp;Ferret Integration
+    <a class="list" id="Ferret-Integration" href="#a-605954648">3.2.2</a>&nbsp;&nbsp;<a class="here" href="#Ferret-Integration">Ferret Integration</a>
   </h3>
-  <div class="content"><p>To use rmmseg-cpp with Ferret, you&#8217;ll need to <code class="code">require</code> the
-Ferret support of rmmseg-cpp:</p>
-
-
-	<pre class="code">
+  <div class="content"><p>To use rmmseg-cpp with Ferret, you&#8217;ll need to <code class="code">require</code> the<br />
+Ferret support of rmmseg-cpp (Of course you&#8217;ll also have to<br />
+got Ferret installed. If you have problems running the belowing<br />
+example, please try to update to the latest version of both<br />
+Ferret and rmmseg-cpp first):<br />
+  <br />
+<pre class="code">
 require <span style="background-color:#fff0f0"><span style="color:#710">'</span><span style="color:#D20">rmmseg/ferret</span><span style="color:#710">'</span></span>
-</pre>
-
-
-	<p>rmmseg-cpp comes with a ready to use Ferret analyzer:</p>
-
-
-	<pre class="code">
+</pre></p>
+<p>rmmseg-cpp comes with a ready to use Ferret analyzer:<br />
+  <br />
+<pre class="code">
 analyzer = <span style="color:#036; font-weight:bold">RMMSeg</span>::<span style="color:#036; font-weight:bold">Ferret</span>::<span style="color:#036; font-weight:bold">Analyzer</span>.new { |tokenizer|
   <span style="color:#036; font-weight:bold">Ferret</span>::<span style="color:#036; font-weight:bold">Analysis</span>::<span style="color:#036; font-weight:bold">LowerCaseFilter</span>.new(tokenizer)
 }
 index = <span style="color:#036; font-weight:bold">Ferret</span>::<span style="color:#036; font-weight:bold">Index</span>::<span style="color:#036; font-weight:bold">Index</span>.new(<span style="color:#A60">:analyzer</span> =&gt; analyzer)
-</pre>
-
-
-	<p>A complete example can be found in <tt>misc/ferret_example.rb</tt>. The result
-of running that example is shown in <a class="xref" href="#Ferret-Example-Screenshot">Figure 1: <em>Ferret Example Screenshot</em></a>.</p>
-
-
-	<p><div class="figure">
-  <p class="title"><a class="toc" id="Ferret-Example-Screenshot" href="#a-606768368">Figure 1</a>.&nbsp;&nbsp;Ferret Example Screenshot</p>
+</pre><br />
+  <br />
+A complete example can be found in <tt>misc/ferret_example.rb</tt>. The result<br />
+of running that example is shown in <a class="xref" href="#Ferret-Example-Screenshot">Figure 1. Ferret Example Screenshot</a>.<br />
+  <br />
+<div class="figure">
+  <p class="title"><a class="list" id="Ferret-Example-Screenshot" href="#a-605959898">Figure 1</a>.&nbsp;&nbsp;<a class="here" href="#Ferret-Example-Screenshot">Ferret Example Screenshot</a></p>
   <div class="content"><img src="http://pluskid.lifegoo.com/wp-content/uploads/2008/02/rmmseg.png" alt="" /></div>
 </div></p></div>
-</div><div class="section">
+</div><br />
+<div class="section">
   <h3 class="title">
-    <a class="toc" id="Normal-Ruby-program" href="#a-606770598">3.2.3</a>&nbsp;&nbsp;Normal Ruby program
+    <a class="list" id="Normal-Ruby-program" href="#a-605963838">3.2.3</a>&nbsp;&nbsp;<a class="here" href="#Normal-Ruby-program">Normal Ruby program</a>
   </h3>
-  <div class="content"><p>rmmseg-cpp can also be used in normal Ruby programs. Just create
+  <div class="content"><p>rmmseg-cpp can also be used in normal Ruby programs. Just create<br />
 an <code class="code"><span style="color:#036; font-weight:bold">Algorithm</span></code> object and call <code class="code">next_token</code> until a <code class="code"><span style="color:#038; font-weight:bold">nil</span></code> is returned:</p>
-
-
-	<pre class="code">
+<pre class="code">
 algor = <span style="color:#036; font-weight:bold">RMMSeg</span>::<span style="color:#036; font-weight:bold">Algorithm</span>.new(text)
 loop <span style="color:#080; font-weight:bold">do</span>
   tok = algor.next_token
@@ -1104,116 +1139,44 @@ loop <span style="color:#080; font-weight:bold">do</span>
 </pre></div>
 </div></div>
 </div></div>
-</div><div class="chapter">
+</div>
+<div class="chapter">
   <h1 class="title">
     Chapter
-    <a class="toc" id="Who-use-it" href="#a-606773598">4</a>
+    <a class="list" id="Who-use-it" href="#a-605971928">4</a>
 
     <br/>
 
-    <big>Who use it</big>
+    <a class="here" href="#Who-use-it"><big>Who use it</big></a>
   </h1>
 
-  <div class="content"><div class="tip">
-  <p class="title"><a class="toc" id="Expand-this-list" href="#a-606775158">Tip 1</a>.&nbsp;&nbsp;Expand this list</p>
+  <div class="content"><p><div class="tip">
+  <p class="title"><a class="list" id="Expand-this-list" href="#a-605984048">Tip 1</a>.&nbsp;&nbsp;<a class="here" href="#Expand-this-list">Expand this list</a></p>
 
-  <img src="data:image/png;base64,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
-fvRz1xK+Y1MgiBUxdCKZabFd975CoXzOYbKMERwLspqSdk9z0tnwT//yrYqR
-+OxyNC27KqHI3P+Tl/99LhEVM+taMykGacGkY4OgUAlGshm30WFSQpC0bAot
-QYHlkG8Ly29IJZuVil+3iSqWTaHFpFoyybbetoY79z+1P/arlQeXu71cNsAz
-Tz42pf3ybx974Xk/EVfbmtNugpk0Mel8RY3ZZFLMpGzByiaWjuDQsThIuuzH
-MsjIOD4rLAotwdKxLNPZ6N375P798fDl0T89fOArLy1XzzXVhQ4e/NpYFNRu
-/8mJY4muZq9FEDQT6WIlmC3MzrgUKVcQKWGRFMSha7EfVqtObvKKkKEcFcRS
-CFYtDcntA0OD/uWRkS89ffCx716LlmsubB08+PiF3MTEf2q/mBVCMBEMk1D5
-QqkwV8hliVhbhMh2WDmCw6HBX7UX8rMjlu34FkGxYe0w73jp+Esp24ivX6uO
-FVXmlAyfGR8doUbPTVP9O81EhmeGBy+1MyM24FgwtBCWOnfm9U4IGnSEUUKw
-ZmFiBrpzE7lzTz31pSW/ea9uK6rMCYhTA5cuJbfuuLljYLw0JaszbYh8PXz5
-4gbvZ9V7PC+yTRxWpqcKswMD422t7cmhwC+ku9dv9710U28gQxOE/rI28asK
-cOjQl4f/8q8+NzQ5ermjwTaNuZk32i2KUglX0dTUOPr6NsC2ErgyNon16zNI
-uDN/ODY2PjYydun0H+z51Ieeff5IYCJ97H0DAIBYqo9/5/nnzv753ofaUj3b
-rOn8KLq6Q0xOXIFtJ2FbgON42LxlM7q62oUxTm8qtaX3/PkzpXPnz506dOjx
-f13J+KtSG+3/k4/8sr1j1/aPfuyjuOH6LSiWp6CjKrSuQVCIVDKNZKoJqWQW
-rtuC4y8dMz/84alAgK47ePCJyfcVYM+ezRu71mYH7rijD2fPr4FlZ7F79060
-tWXR3NwML+XB9yuYmysgN5HDf5z4GfzaKMZHX/u3F1/85d0rGhyrEEKJhDVX
-LgVBpILEA/e3Y67YjMGhi3j9F3PIz1RQrkg0NrpoyDCaGgxu2FxDaU5hfFQt
-ufLwngIcPXohf889N/x4eKR6x+7fymL7tl246aYCAIMwlNCRRLVaRbEwi8Js
-HoMDs3hrOAdj8PIq6F/5H5q77urrbG3N3L5jexatLduRSd8I11kDISy4jg1m
-BhFBKo3Lw9MoVwKEUgIws6ugf+UeSKWMDEMZVavSzs++DsdNAjQHIgOpIszM
-zCGfz6NcKqOnO4tUAjBxLyYnZ/54NQBW7IGjRy/kS6XwRxcvFmFiAZgYWkfQ
-WsMYg+bmDLq62rGmoxlCCFRrIaam52AMzv+fAPjEJza1Z1vSt+3c2Y7W1puQ
-9vqQcP87hIQQICJEWmN8fBbGMNZ1t8N27Fv27NncvdLxVxxCUiY41pqCQOLq
-ENKxwVyhjOnpPCqVKnrWtSE/ncfgTB5kjC4WQ0NENuq1VXMtP/6uCYCIeP5e
-BlC+664tf3/06MXPT+Rsa+PGMazp7EIy5aFSriKfL2Bqchpzc3OolMoYHcvh
-ypWcqtXk53/601EfgId65U4TkZ7vR8aYeElalgNNRGJe+OKjACB27Oja1Nqa
-ujuZbLjb89Lbk0kL5fIc4ljDcTyEYQSl1PlKpfDi5cul7w8Pz+YAKMxXtq+y
-aOFo6n9OVg5ARNa86MUAC30HgAsgsWvXrt/cunXrEw899FDSdV0UCgUMDQ3h
-lVdeCS5evPh3Z86ceW1eeDhvwfxRLhIfLe4bY6J30rWkJJ4PmXcyaxGAe/r0
-6Yu+74+dOHFCTU5OIp/P480334zCMMydOXNmDEAGQApAYuGe+futdxqDiOgd
-ta22BwC4nZ2dXdu2bfujlpaWe4wxNDMz84OzZ88em5qamkZ9ppfjAflu+bDc
-HGAANv6XHFhk9iI4CwDNm5m3aJG9Ww4o1MPnXQVe09fovEsXBC+AXO16LBK/
-0BYggPpqs9jeBlvqCnTNAP/jIXWgBeNF/YXzBfHxIoC3z5cj+Or2X3r9Ye2F
-1izgAAAAAElFTkSuQmCC
-" class="icon"/>
-
-  <div class="content">If you used rmmseg-cpp and would like your project to
+  <div class="content icon-tip">If you used rmmseg-cpp and would like your project to<br />
 appear in this list, please <a href="mailto:pluskid@gmail.com">contact me</a>.</div>
-</div>* <a href="http://www.javaeye.com/">JavaEye</a>: One of the biggest software developper
-  community in China.</div>
-</div><div class="chapter">
+</div></p>
+<ul>
+	<li><a href="http://www.javaeye.com/">JavaEye</a>: One of the biggest software developper<br />
+  community in China.</li>
+</ul></div>
+</div>
+<div class="chapter">
   <h1 class="title">
     Chapter
-    <a class="toc" id="Resources" href="#a-606777358">5</a>
+    <a class="list" id="Resources" href="#a-606002348">5</a>
 
     <br/>
 
-    <big>Resources</big>
+    <a class="here" href="#Resources"><big>Resources</big></a>
   </h1>
 
   <div class="content"><ul>
 	<li><a href="http://rubyforge.org/projects/rmmseg-cpp/">Project Home</a>: The Project page at RubyForge.</li>
-		<li><a href="http://rmmseg-cpp.rubyforge.org/rdoc/index.html">RDoc of rmmseg-cpp</a>: The auto generated rdoc of RMMSeg.</li>
-		<li><a href="http://pluskid.lifegoo.com/">Free Mind</a>: The author&#8217;s blog.</li>
-		<li><a href="mailto:pluskid@gmail.com">Author&#8217;s Email</a>: Contact me if you have any problem.</li>
-	</ul></div>
+	<li><a href="http://rmmseg-cpp.rubyforge.org/rdoc/index.html">RDoc of rmmseg-cpp</a>: The auto generated rdoc of RMMSeg.</li>
+	<li><a href="http://pluskid.lifegoo.com/">Free Mind</a>: The author&#8217;s blog.</li>
+	<li><a href="mailto:pluskid@gmail.com">Author&#8217;s Email</a>: Contact me if you have any problem.</li>
+</ul></div>
 </div></div>
 
 
@@ -1224,140 +1187,14 @@ appear in this list, please <a href="mailto:pluskid@gmail.com">contact me</a>.</
     
     <div id="footer">
     
-      Generated on Sun Jun 08 08:13:23 -0400 2008 by <a href="http://gerbil.rubyforge.org">Gerbil</a> 3.0.1.
+      Generated on Thu Jul 24 08:58:12 -0400 2008 by <a href="http://gerbil.rubyforge.org">Gerbil</a> 3.1.0.
 
-      <p>The admonition icons (<img src="data:image/png;base64,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
-"/> <img src="data:image/png;base64,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
-fvRz1xK+Y1MgiBUxdCKZabFd975CoXzOYbKMERwLspqSdk9z0tnwT//yrYqR
-+OxyNC27KqHI3P+Tl/99LhEVM+taMykGacGkY4OgUAlGshm30WFSQpC0bAot
-QYHlkG8Ly29IJZuVil+3iSqWTaHFpFoyybbetoY79z+1P/arlQeXu71cNsAz
-Tz42pf3ybx974Xk/EVfbmtNugpk0Mel8RY3ZZFLMpGzByiaWjuDQsThIuuzH
-MsjIOD4rLAotwdKxLNPZ6N375P798fDl0T89fOArLy1XzzXVhQ4e/NpYFNRu
-/8mJY4muZq9FEDQT6WIlmC3MzrgUKVcQKWGRFMSha7EfVqtObvKKkKEcFcRS
-CFYtDcntA0OD/uWRkS89ffCx716LlmsubB08+PiF3MTEf2q/mBVCMBEMk1D5
-QqkwV8hliVhbhMh2WDmCw6HBX7UX8rMjlu34FkGxYe0w73jp+Esp24ivX6uO
-FVXmlAyfGR8doUbPTVP9O81EhmeGBy+1MyM24FgwtBCWOnfm9U4IGnSEUUKw
-ZmFiBrpzE7lzTz31pSW/ea9uK6rMCYhTA5cuJbfuuLljYLw0JaszbYh8PXz5
-4gbvZ9V7PC+yTRxWpqcKswMD422t7cmhwC+ku9dv9710U28gQxOE/rI28asK
-cOjQl4f/8q8+NzQ5ermjwTaNuZk32i2KUglX0dTUOPr6NsC2ErgyNon16zNI
-uDN/ODY2PjYydun0H+z51Ieeff5IYCJ97H0DAIBYqo9/5/nnzv753ofaUj3b
-rOn8KLq6Q0xOXIFtJ2FbgON42LxlM7q62oUxTm8qtaX3/PkzpXPnz506dOjx
-f13J+KtSG+3/k4/8sr1j1/aPfuyjuOH6LSiWp6CjKrSuQVCIVDKNZKoJqWQW
-rtuC4y8dMz/84alAgK47ePCJyfcVYM+ezRu71mYH7rijD2fPr4FlZ7F79060
-tWXR3NwML+XB9yuYmysgN5HDf5z4GfzaKMZHX/u3F1/85d0rGhyrEEKJhDVX
-LgVBpILEA/e3Y67YjMGhi3j9F3PIz1RQrkg0NrpoyDCaGgxu2FxDaU5hfFQt
-ufLwngIcPXohf889N/x4eKR6x+7fymL7tl246aYCAIMwlNCRRLVaRbEwi8Js
-HoMDs3hrOAdj8PIq6F/5H5q77urrbG3N3L5jexatLduRSd8I11kDISy4jg1m
-BhFBKo3Lw9MoVwKEUgIws6ugf+UeSKWMDEMZVavSzs++DsdNAjQHIgOpIszM
-zCGfz6NcKqOnO4tUAjBxLyYnZ/54NQBW7IGjRy/kS6XwRxcvFmFiAZgYWkfQ
-WsMYg+bmDLq62rGmoxlCCFRrIaam52AMzv+fAPjEJza1Z1vSt+3c2Y7W1puQ
-9vqQcP87hIQQICJEWmN8fBbGMNZ1t8N27Fv27NncvdLxVxxCUiY41pqCQOLq
-ENKxwVyhjOnpPCqVKnrWtSE/ncfgTB5kjC4WQ0NENuq1VXMtP/6uCYCIeP5e
-BlC+664tf3/06MXPT+Rsa+PGMazp7EIy5aFSriKfL2Bqchpzc3OolMoYHcvh
-ypWcqtXk53/601EfgId65U4TkZ7vR8aYeElalgNNRGJe+OKjACB27Oja1Nqa
-ujuZbLjb89Lbk0kL5fIc4ljDcTyEYQSl1PlKpfDi5cul7w8Pz+YAKMxXtq+y
-aOFo6n9OVg5ARNa86MUAC30HgAsgsWvXrt/cunXrEw899FDSdV0UCgUMDQ3h
-lVdeCS5evPh3Z86ceW1eeDhvwfxRLhIfLe4bY6J30rWkJJ4PmXcyaxGAe/r0
-6Yu+74+dOHFCTU5OIp/P480334zCMMydOXNmDEAGQApAYuGe+futdxqDiOgd
-ta22BwC4nZ2dXdu2bfujlpaWe4wxNDMz84OzZ88em5qamkZ9ppfjAflu+bDc
-HGAANv6XHFhk9iI4CwDNm5m3aJG9Ww4o1MPnXQVe09fovEsXBC+AXO16LBK/
-0BYggPpqs9jeBlvqCnTNAP/jIXWgBeNF/YXzBfHxIoC3z5cj+Or2X3r9Ye2F
-1izgAAAAAElFTkSuQmCC
-"/>) used in this document are Copyright &copy; 2005 <a href="http://tango.freedesktop.org">Tango Desktop Project</a>. They are part of the <a href="http://tango.freedesktop.org/Tango_Icon_Library">Tango Icon Theme</a> set, which is distributed under the <a href="http://creativecommons.org/licenses/by-sa/2.5/">Creative Commons Attribution-ShareAlike 2.5 License Agreement</a>.</p>
+      <div id="footer-credits">
+        <span class="icon-warning" style="float: right">&nbsp;</span>
+        <span class="icon-tip" style="float: right">&nbsp;</span>
+
+        <p>The admonition graphics used in this document are Copyright &copy; 2005 <a href="http://tango.freedesktop.org">Tango Desktop Project</a>. They are part of the <a href="http://tango.freedesktop.org/Tango_Icon_Library">Tango Icon Theme</a> set, which is distributed under the <a href="http://creativecommons.org/licenses/by-sa/2.5/">Creative Commons Attribution-ShareAlike 2.5 License Agreement</a>.</p>
+      </div>
     
     </div>
     
