@@ -13,6 +13,8 @@ a Python interface for it in order to use it in my Python project.
 * Runs fast and the memory consumption is small.
 * Support user customized dictionaries.
 
+* Can't work on Windows yet.
+
 == SYNOPSIS:
 
 === A simple script
@@ -44,8 +46,16 @@ None. Or you can simply iterate through it:
 
 == INSTALL:
 
-copy the pymmseg directory to your Python's package path. e.g. 
-/usr/lib/python2.5/site-packages/
+Download the package at
+http://pluskid.lifegoo.com/upload/project/pymmseg/downloads/ . If you
+download the source tarball, you'll need to compile it by
+
+  make build
+
+if you download the pre-compiled version, this step can be skipped.
+Then copy the pymmseg directory to your Python's package path. e.g.
+/usr/lib/python2.5/site-packages/ . Now you can use pymmseg in your
+application.
 
 == LICENSE:
 
