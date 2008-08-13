@@ -42,4 +42,26 @@ extern "C" {
         rmmseg::Word *w = rmmseg::make_word(word, len, freq, strlen(word));
         rmmseg::dict::add(w);
     }
+
+    /*
+     * Create an Algorithm object.
+     *
+     * - text is the text to process. It is OK to contain NUL
+     *   character.
+     * - len is the length (number of bytes) of the text.
+     */
+    rmmseg::Algorithm *mmseg_algor_create(const char *text, int len)
+    {
+        return new rmmseg::Algorithm(text, len);
+    }
+
+    void mmseg_algor_destroy(rmmseg::Algorithm *algor)
+    {
+        delete algor;
+    }
+
+    rmmseg::Token mmseg_next_token(rmmseg::Algorithm *algor)
+    {
+        return algor->next_token();
+    }
 }
