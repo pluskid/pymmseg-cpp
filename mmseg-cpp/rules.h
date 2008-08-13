@@ -11,7 +11,7 @@ namespace rmmseg
     template <typename Cmp>
     void take_highest(std::vector<Chunk> &chunks, Cmp &cmp)
     {
-        int i = 1, j;
+        unsigned int i = 1, j;
         Chunk& max = chunks[0];
 
         for (j = 1; j < chunks.size(); ++j)

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from ctypes import *
-from os.path import join, dirname, abspath
+from os.path import join, dirname, abspath, exists
 
-mmseg = cdll.LoadLibrary(abspath(join(dirname(__file__), 'mmseg.so')))
+mmseg = cdll.LoadLibrary(join(dirname(__file__),
+                              'mmseg-cpp',
+                              'mmseg.so'))
 
 ########################################
 # the rmmseg::Token struct
@@ -35,10 +37,10 @@ mmseg.mmseg_next_token.argtypes = [c_void_p]
 mmseg.mmseg_next_token.restype  = Token
 
 
-mmseg.mmseg_load_chars(join(dirname(__file__), '..', 'data', 'chars.dic'))
-mmseg.mmseg_load_words(join(dirname(__file__), '..', 'data', 'words.dic'))
+mmseg.mmseg_load_chars(join(dirname(__file__), 'data', 'chars.dic'))
+mmseg.mmseg_load_words(join(dirname(__file__), 'data', 'words.dic'))
 
-text = "这是一段中文文本"
+text = "这不是一段中文文本"
 algor = mmseg.mmseg_algor_create(text, len(text))
 
 while True:
