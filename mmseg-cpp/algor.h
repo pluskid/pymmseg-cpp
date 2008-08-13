@@ -33,6 +33,11 @@ namespace rmmseg
 
         Token next_token();
 
+        const char *get_text() const
+        {
+            return m_text;
+        }
+
     private:
         Token get_basic_latin_word();
         Token get_cjk_word(int);

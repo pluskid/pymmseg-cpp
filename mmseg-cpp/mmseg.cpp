@@ -7,6 +7,15 @@
 #include "dict.h"
 #include "algor.h"
 
+struct Token
+{
+    Token(const char *text, int offset, int length)
+        :text(text), offset(offset), length(length) {}
+    const char *text;
+    int offset;
+    int length;
+};
+
 extern "C" {
     /*
      * Load a character dictionary.
@@ -60,8 +69,9 @@ extern "C" {
         delete algor;
     }
 
-    rmmseg::Token mmseg_next_token(rmmseg::Algorithm *algor)
+    Token mmseg_next_token(rmmseg::Algorithm *algor)
     {
-        return algor->next_token();
+        rmmseg::Token rtk = algor->next_token();
+        return Token(rtk.text, rtk.text-algor->get_text(), rtk.length);
     }
 }

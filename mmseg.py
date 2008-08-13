@@ -8,10 +8,11 @@ mmseg = cdll.LoadLibrary(join(dirname(__file__),
                               'mmseg.so'))
 
 ########################################
-# the rmmseg::Token struct
+# the Token struct
 ########################################
 class Token(Structure):
     _fields_ = [('_text', c_void_p),
+                ('_offset', c_int),
                 ('_length', c_int)]
 
     def text_get(self):
@@ -19,6 +20,18 @@ class Token(Structure):
     def text_set(self, value):
         raise AttributeError('text attribute is read only')
     text = property(text_get, text_set)
+
+    def start_get(self):
+        return self._offset
+    def start_set(self, value):
+        raise AttributeError('start attribute is read only')
+    start = property(start_get, start_set)
+
+    def end_get(self):
+        return self._offset+self._length
+    def end_set(self, value):
+        raise AttributeError('start attribute is read only')
+    end = property(end_get, end_set)
 
     def length_get(self):
         return self._length

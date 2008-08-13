@@ -17,29 +17,25 @@ a Python interface for it in order to use it in my Python project.
 
 === A simple script
 
-rmmseg-cpp provides a simple script, which can read the text from
-standard input and print the segmented result to standard output. Try
-<tt>rmmseg -h</tt> for help on the options.
+pymmseg-cpp provides a simple script (bin/pymmseg), which can read the
+text from standard input and print the segmented result to standard
+output. Try <tt>pymmseg -h</tt> for help on the options.
 
-=== In a normal Ruby program
+=== As a Python module
 
-To use rmmseg-cpp in normal Ruby program, first load the package and
+To use pymmseg-cpp in normal Python program, first import the module and
 init by loading the dictionaries:
 
-  require 'rubygems'
-  require 'rmmseg'
+  from pymmseg import mmseg
 
-  RMMSeg::Dictionary.load_dictionaries
+  mmseg.dict_load_defaults()
 
-Then create a +Algorithm+ object and call +next_token+ until got a
-+nil+:
+Then create a Algorithm object and call next_token until got a
+None. Or you can simply iterate through it:
 
-  algor = RMMSeg::Algorithm.new(text)
-  loop do
-    tok = algor.next_token
-    break if tok.nil?
-    puts "#{tok.text} [#{tok.start}..#{tok.end}]"
-  end
+  algor = mmseg.Algorithm(text)
+  for tok in algor:
+      print '%s [%d..%d]' % (tok.text, tok.start, tok.end)
 
 == REQUIREMENTS:
 
@@ -48,7 +44,8 @@ Then create a +Algorithm+ object and call +next_token+ until got a
 
 == INSTALL:
 
-* sudo gem install rmmseg-cpp
+copy the pymmseg directory to your Python's package path. e.g. 
+/usr/lib/python2.5/site-packages/
 
 == LICENSE:
 
