@@ -6,3 +6,5 @@ ext/rmmseg
 doc
 *.gem
 !ext/rmmseg/*.{cpp,h}
+*.pyc
+

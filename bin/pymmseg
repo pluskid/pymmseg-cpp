@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+
+import sys
+import getopt
+from os.path import dirname, join
+
+sys.path.append(join(dirname(__file__), '..'))
+
+import mmseg
+
+def print_usage():
+    print """\
+mmseg  Segment Chinese text. Read from stdin and print to stdout.
+
+Options:
+  -h
+  --help      Print this message
+
+  -s
+  --separator Select the separator of the segmented text. Default is
+              space.
+    """
+    sys.exit(0)
+
+separator = " "
+
+optlst, args = getopt.getopt(sys.argv[1:], 'hs:')
+
+for opt, val in optlst:
+    if opt == '-h':
+        print_usage()
+    
+    elif opt == '-s':
+        separator = val
+
+
+# load default dictionaries
+mmseg.dict_load_defaults()
+
+algor = mmseg.Algorithm(sys.stdin.read())
+first = True
+for tk in algor:
+    if not first:
+        sys.stdout.write(separator)
+    first = False
+    sys.stdout.write(tk.text)
+print
