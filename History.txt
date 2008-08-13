@@ -1,5 +1,0 @@
-== 0.2.5 / 2008-06-07
-
-* Created homepage on Rubyforge.
-* Gem can be installed directly from Rubyforge now.
-* Added rdoc for native extensions.
