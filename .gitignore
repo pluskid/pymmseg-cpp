@@ -1,7 +1,6 @@
 *.o
 *.so
 a.out
-Makefile
 ext/rmmseg
 doc
 *.gem
