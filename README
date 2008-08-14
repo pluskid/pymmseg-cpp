@@ -1,5 +1,6 @@
 pymmseg-cpp
     by pluskid
+    http://pymmseg-cpp.googlecode.com/
 
 == DESCRIPTION:
 
@@ -47,8 +48,8 @@ None. Or you can simply iterate through it:
 == INSTALL:
 
 Download the package at
-http://pluskid.lifegoo.com/upload/project/pymmseg/downloads/ . If you
-download the source tarball, you'll need to compile it by
+http://code.google.com/p/pymmseg-cpp/downloads/list . If you download
+the source tarball, you'll need to compile it by
 
   make build
 
