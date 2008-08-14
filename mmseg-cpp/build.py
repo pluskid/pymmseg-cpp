@@ -9,7 +9,7 @@ from glob import glob
 ########################################
 config = {
     'ld': 'g++',
-    'ld_flags': '-shared'
+    'ld_flags': '-shared',
     'shared_ext': 'so',
     'shared_oflag': '-o ',
     'obj_ext': 'o',
@@ -22,10 +22,10 @@ if sys.platform == 'win32':
     config['ld_flags'] = '/DLL /NOLOGO /OPT:REF /OPT:ICF' + \
                          ' /LTCG /DYNAMICBASE /NXCOMPAT'
     config['shared_ext'] = 'dll'
-    config['shared_o_flag'] = '/OUT:'
+    config['shared_oflag'] = '/OUT:'
     config['obj_ext'] = 'obj'
     config['cxx'] = 'cl'
-    config['cxx_flags'] = '/O2 /Oi /GL /EHsc /MD /Gy' + \
+    config['cxx_flags'] = '/O2 /Oi /GL /EHsc /Gy' + \
                           ' /W3 /nologo /c'
     
 
