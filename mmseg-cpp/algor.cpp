@@ -163,9 +163,17 @@ namespace rmmseg
         // ONLY for UTF-8
         unsigned char ch = m_text[m_pos];
         if (ch >= 0xC0 && ch <= 0xDF)
+        {
+            if (m_text_length-m_pos < 2)
+                return 1; /* broken text at the end */
             return 2;
+        }
         if (ch >= 0xE0 && ch <= 0xEF)
+        {
+            if (m_text_length-m_pos < 3)
+                return 1; /* broken text at the end */
             return 3;
+        }
         return 1;
     }
 
