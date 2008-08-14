@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 
+import sys
 from ctypes import *
 from os.path import join, dirname, abspath, exists
 
+if sys.platform == 'win32':
+    ext = 'dll'
+else:
+    ext = 'so'
+    
 mmseg = cdll.LoadLibrary(join(dirname(__file__),
                               'mmseg-cpp',
-                              'mmseg.so'))
+                              'mmseg.%s' % ext))
 
 ########################################
 # the Token struct

@@ -21,7 +21,7 @@ a Python interface for it in order to use it in my Python project.
 
 pymmseg-cpp provides a simple script (bin/pymmseg), which can read the
 text from standard input and print the segmented result to standard
-output. Try <tt>pymmseg -h</tt> for help on the options.
+output. Try pymmseg -h for help on the options.
 
 === As a Python module
 
