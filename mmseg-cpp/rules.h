@@ -9,12 +9,12 @@
 namespace rmmseg
 {
     template <typename Cmp>
-    void take_highest(std::vector<Chunk> &chunks, Cmp &cmp)
+    int take_highest(std::vector<Chunk> &chunks, int n, Cmp &cmp)
     {
         unsigned int i = 1, j;
         Chunk& max = chunks[0];
 
-        for (j = 1; j < chunks.size(); ++j)
+        for (j = 1; j < n; ++j)
         {
             int rlt = cmp(chunks[j], max);
             if (rlt > 0)
@@ -22,7 +22,7 @@ namespace rmmseg
             if (rlt >= 0)
                 std::swap(chunks[i++], chunks[j]);
         }
-        chunks.erase(chunks.begin()+i, chunks.end());
+        return i;
     }
 
     struct MMCmp_t
@@ -32,9 +32,9 @@ namespace rmmseg
             return a.total_length() - b.total_length();
         }
     } MMCmp;
-    void mm_filter(std::vector<Chunk> &chunks)
+    int mm_filter(Chunk *chunks, int n)
     {
-        take_highest(chunks, MMCmp);
+        return take_highest(chunks, n, MMCmp);
     }
 
     struct LAWLCmp_t
@@ -49,9 +49,9 @@ namespace rmmseg
             return -1;
         }
     } LAWLCmp;
-    void lawl_filter(std::vector<Chunk> &chunks)
+    int lawl_filter(Chunk *chunks, int n)
     {
-        take_highest(chunks, LAWLCmp);
+        return take_highest(chunks, n, LAWLCmp);
     }
 
     struct SVWLCmp_t
@@ -66,9 +66,9 @@ namespace rmmseg
             return -1;
         }
     } SVWLCmp;
-    void svwl_filter(std::vector<Chunk> &chunks)
+    int svwl_filter(Chunk *chunks, int n)
     {
-        take_highest(chunks, SVWLCmp);
+        return take_highest(chunks, n, SVWLCmp);
     }
 
     struct LSDMFOCWCmp_t
@@ -78,9 +78,9 @@ namespace rmmseg
             return a.degree_of_morphemic_freedom() - b.degree_of_morphemic_freedom();
         }
     } LSDMFOCWCmp;
-    void lsdmfocw_filter(std::vector<Chunk> &chunks)
+    int lsdmfocw_filter(Chunk *chunks, int n)
     {
-        take_highest(chunks, LSDMFOCWCmp);
+        return take_highest(chunks, n, LSDMFOCWCmp);
     }
 }
 

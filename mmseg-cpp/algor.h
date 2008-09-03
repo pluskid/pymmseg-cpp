@@ -22,7 +22,7 @@ namespace rmmseg
     {
     public:
         Algorithm(const char *text, int length)
-            :m_text(text), m_pos(0),
+            :m_chunks_size(0), m_text(text), m_pos(0),
             m_text_length(length),
             m_tmp_words_i(0),
             m_match_cache_i(0)
@@ -41,13 +41,19 @@ namespace rmmseg
     private:
         Token get_basic_latin_word();
         Token get_cjk_word(int);
+
+        static const int MAX_WORD_LENGTH = 4;
+        static const int MAX_N_CHUNKS = \
+            MAX_WORD_LENGTH*MAX_WORD_LENGTH*MAX_WORD_LENGTH;
         
-        std::vector<Chunk> create_chunks();
+        void create_chunks();
         int next_word();
         int next_char();
         std::vector<Word *> find_match_words();
-        int max_word_length() { return 4; }
+        int max_word_length() { return MAX_WORD_LENGTH; }
 
+        Chunk m_chunks[MAX_N_CHUNKS];
+        int m_chunks_size;
         
         const char *m_text;
         int m_pos;

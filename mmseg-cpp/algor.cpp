@@ -71,28 +71,27 @@ namespace rmmseg
 
     Token Algorithm::get_cjk_word(int len)
     {
-        vector<Chunk> chunks = create_chunks();
+        create_chunks();
 
-        if (chunks.size() > 1)
-            mm_filter(chunks);
-        if (chunks.size() > 1)
-            lawl_filter(chunks);
-        if (chunks.size() > 1)
-            svwl_filter(chunks);
-        if (chunks.size() > 1)
-            lsdmfocw_filter(chunks);
+        if (m_chunks_size > 1)
+            m_chunks_size = mm_filter(m_chunks, m_chunks_size);
+        if (m_chunks_size > 1)
+            m_chunks_size = lawl_filter(m_chunks, m_chunks_size);
+        if (m_chunks_size > 1)
+            m_chunks_size = svwl_filter(m_chunks, m_chunks_size);
+        if (m_chunks_size > 1)
+            m_chunks_size = lsdmfocw_filter(m_chunks, m_chunks_size);
 
-        if (chunks.size() < 1)
+        if (m_chunks_size < 1)
             return Token(NULL, 0);
 
-        Token token(m_text+m_pos, chunks[0].words[0]->nbytes);
-        m_pos += chunks[0].words[0]->nbytes;
+        Token token(m_text+m_pos, m_chunks[0].words[0]->nbytes);
+        m_pos += m_chunks[0].words[0]->nbytes;
         return token;
     }
     
-    vector<Chunk> Algorithm::create_chunks()
+    void Algorithm::create_chunks()
     {
-        vector<Chunk> chunks;
         Chunk chunk;
         Word *w1, *w2, *w3;
 
@@ -101,6 +100,8 @@ namespace rmmseg
         typedef vec_t::iterator it_t;
 
         vec_t words1 = find_match_words();
+        m_chunks_size = 0;
+
         for (it_t i1 = words1.begin();
              i1 != words1.end();
              ++i1)
@@ -135,13 +136,17 @@ namespace rmmseg
                                 chunk.n = 3;
                                 chunk.words[2] = w3;
                             }
-                            chunks.push_back(chunk);
+                            memcpy(m_chunks+m_chunks_size, &chunk,
+                                   sizeof(Chunk));
+                            m_chunks_size++;
                         }
                     }
                     else if (m_pos == m_text_length)
                     {
                         chunk.n = 2;
-                        chunks.push_back(chunk);
+                        memcpy(m_chunks+m_chunks_size, &chunk,
+                               sizeof(Chunk));
+                        m_chunks_size++;
                     }
                     m_pos -= w2->nbytes;
                 }
@@ -149,13 +154,13 @@ namespace rmmseg
             else if (m_pos == m_text_length)
             {
                 chunk.n = 1;
-                chunks.push_back(chunk);
+                memcpy(m_chunks+m_chunks_size, &chunk, sizeof(Chunk));
+                m_chunks_size++;
             }
             m_pos -= w1->nbytes;
         }
 
         m_pos = orig_pos;
-        return chunks;
     }
 
     int Algorithm::next_char()
