@@ -45,6 +45,12 @@ class Token(Structure):
         raise AttributeError('length attribute is read only')
     length = property(length_get, length_set)
 
+    def __repr__(self):
+        return '<Token %d..%d %s>' % (self.start,
+                self.end, self.text.__repr__())
+    def __str__(self):
+        return self.text
+
 
 ########################################
 # Init function prototypes

@@ -14,7 +14,7 @@ a Python interface for it in order to use it in my Python project.
 * Runs fast and the memory consumption is small.
 * Support user customized dictionaries.
 
-* Can't work on Windows yet.
+* Only UTF-8 encoding is supported.
 
 == SYNOPSIS:
 
@@ -39,6 +39,20 @@ None. Or you can simply iterate through it:
   algor = mmseg.Algorithm(text)
   for tok in algor:
       print '%s [%d..%d]' % (tok.text, tok.start, tok.end)
+
+=== Customize the dictionary
+
+You can load your own character dictionary or word dictionary in the
+following way:
+
+  from pymmseg import mmseg
+
+  mmseg.dict_load_words('customize_words.dic')
+  mmseg.dict_load_chars('customize_chars.dic')
+
+The format for the dictionary is very simple. On each line, you specify
+the frequency followed by an whitespace and then the word/character. Just 
+don't forget the final newline at the end of the file.  
 
 == REQUIREMENTS:
 
