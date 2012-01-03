@@ -8,8 +8,8 @@ REVISION = '%04d%02d%02d' % DATE_INFO
 BUILD_INFO = "MMSeg v" + VERSION + " (" + REVISION + ")"
 AUTHOR = "pluskid & kronuz"
 AUTHOR_EMAIL = 'pluskid@gmail.com'
-URL = 'http://github.com/Kronuz/pymmseg-cpp'
-DOWNLOAD_URL = 'http://github.com/Kronuz/pymmseg-cpp/tarball/master'
+URL = 'http://github.com/pluskid/pymmseg-cpp'
+DOWNLOAD_URL = 'http://github.com/pluskid/pymmseg-cpp/tarball/v1.0.0'
 LICENSE = "MIT"
 PROJECT = "pymmseg-cpp"
 
