@@ -1,6 +1,38 @@
 #!/usr/bin/env python
 
 import sys
+import pstats
+import cProfile
+from cStringIO import StringIO
+def profile(fn):
+    def wrapper(*args, **kwargs):
+        profiler = cProfile.Profile()
+        stream = StringIO()
+        profiler.enable()
+        try:
+            res = fn(*args, **kwargs)
+        finally:
+            profiler.disable()
+            stats = pstats.Stats(profiler, stream=stream)
+            stats.sort_stats('time')
+            print >>stream, ""
+            print >>stream, "=" * 100
+            print >>stream, "Stats:"
+            stats.print_stats()
+
+            print >>stream, "=" * 100
+            print >>stream, "Callers:"
+            stats.print_callers()
+
+            print >>stream, "=" * 100
+            print >>stream, "Callees:"
+            stats.print_callees()
+            print >>sys.stderr, stream.getvalue()
+            stream.close()
+        return res
+    return wrapper
+
+
 import getopt
 from os.path import dirname, join
 
@@ -9,17 +41,16 @@ sys.path.append(join(dirname(__file__), '..'))
 import mmseg
 
 def print_usage():
-    print """\
+    print """
 mmseg  Segment Chinese text. Read from stdin and print to stdout.
 
 Options:
-  -h
-  --help      Print this message
+    -h
+    --help       Print this message
 
-  -s
-  --separator Select the separator of the segmented text. Default is
-              space.
-    """
+    -s
+    --separator  Select the separator of the segmented text. Default is space.
+"""
     sys.exit(0)
 
 separator = " "

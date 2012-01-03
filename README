@@ -1,5 +1,5 @@
 pymmseg-cpp
-    by pluskid
+    by pluskid & kronuz
     http://github.com/pluskid/pymmseg-cpp
 
 == DESCRIPTION:
@@ -72,7 +72,13 @@ following way:
 * python 2.5
 * g++
 
-== INSTALL:
+== INSTALLATION:
+
+pymmseg-cpp should be installed using pip or setuptools:
+
+  pip install pymmseg-cpp
+
+  easy_install pymmseg-cpp
 
 Download the package at
 http://code.google.com/p/pymmseg-cpp/downloads/list. If you download
@@ -84,6 +90,11 @@ if you download the pre-compiled version, this step can be skipped.
 Then copy the pymmseg directory to your Python's package path. e.g.
 /usr/lib/python2.5/site-packages/ . Now you can use pymmseg in your
 application.
+
+== CONTRIBUTIONS:
+
+Python native extension code contributed by German M. Bravo (Kronuz)
+for a ~400% performance boost under Python.
 
 == LICENSE:
 
