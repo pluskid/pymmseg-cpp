@@ -29,7 +29,7 @@ optlst, args = getopt.getopt(sys.argv[1:], 'hs:')
 for opt, val in optlst:
     if opt == '-h':
         print_usage()
-    
+
     elif opt == '-s':
         separator = val
 
@@ -37,11 +37,16 @@ for opt, val in optlst:
 # load default dictionaries
 mmseg.dict_load_defaults()
 
-algor = mmseg.Algorithm(sys.stdin.read())
-first = True
-for tk in algor:
-    if not first:
-        sys.stdout.write(separator)
-    first = False
-    sys.stdout.write(tk.text)
-print
+def process_tokens(stdin, separator):
+    ret = ''
+    first = True
+    algor = mmseg.Algorithm(stdin)
+    for tk in algor:
+        if not first:
+            ret += separator
+        ret += tk.text
+        first = False
+    return ret
+
+sys.stdout.write(process_tokens(sys.stdin.read(), separator))
+sys.stdout.write('\n')
