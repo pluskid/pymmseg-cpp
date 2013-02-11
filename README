@@ -69,27 +69,34 @@ following way:
 
 == REQUIREMENTS:
 
-* python 2.5
+* python 2.5+
 * g++
 
 == INSTALLATION:
 
-pymmseg-cpp should be installed using pip or setuptools:
+pymmseg-cpp should be installed using pip:
 
-  pip install pymmseg-cpp
+  pip install pymmseg (instead of pymmseg-cpp, see below)
 
-  easy_install pymmseg-cpp
+or setuptools:
 
-Download the package at
-http://code.google.com/p/pymmseg-cpp/downloads/list. If you download
-the source tarball, you'll need to compile it by using:
+  easy_install pymmseg
+
+You can also download the latest code from github and build it yourself:
 
   python setup.py build
 
-if you download the pre-compiled version, this step can be skipped.
 Then copy the pymmseg directory to your Python's package path. e.g.
 /usr/lib/python2.5/site-packages/ . Now you can use pymmseg in your
 application.
+
+== Alternative Version
+
+There is a package called `pymmseg-cpp` in PyPI. That is a modified version by Shenpeng Zhang (zsp007@gmail.com) based on an earlier version of this project. The version number in those two packages are independent. The naming is a little confusing, and unfortunately both of us don't have enough time to get the changes merged properly. I'll list the known differences here so that you can choose which version to use:
+
+* pymmseg is using Python native extension code (instead of the original interface based on ctypes) with the help of Kronuz, who claimed ~400% performance boost.
+* pymmseg-cpp has a refined built-in dictionary file (EDIT: Now also incorporated in pymmseg)
+* pymmseg-cpp ships with some helper functions that might be convenient when using with xapian
 
 == CONTRIBUTIONS:
 
