@@ -46,7 +46,7 @@ namespace rmmseg
         int next_word();
         int next_char();
         std::vector<Word *> find_match_words();
-        int max_word_length() { return 4; }
+        int max_word_length() { return 8; }
 
         
         const char *m_text;
@@ -65,7 +65,7 @@ namespace rmmseg
         }
 
         /* related to max_word_length and match_cache_size */
-        static const int max_tmp_words = 64;
+        static const int max_tmp_words = 512;
         Word m_tmp_words[max_tmp_words];
         int m_tmp_words_i;
 
