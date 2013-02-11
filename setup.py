@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 from setuptools import setup, Extension
 
-VERSION_INFO = (1, 0, 0)
-DATE_INFO = (2012, 1,  2)  # YEAR, MONTH, DAY
+VERSION_INFO = (1, 3, 1)
+DATE_INFO = (2013, 2,  10)  # YEAR, MONTH, DAY
 VERSION = '.'.join(str(i) for i in VERSION_INFO)
 REVISION = '%04d%02d%02d' % DATE_INFO
 BUILD_INFO = "MMSeg v" + VERSION + " (" + REVISION + ")"
-AUTHOR = "pluskid & kronuz"
+AUTHOR = "pluskid & kronuz & zsp007"
 AUTHOR_EMAIL = 'pluskid@gmail.com'
 URL = 'http://github.com/pluskid/pymmseg-cpp'
-DOWNLOAD_URL = 'http://github.com/pluskid/pymmseg-cpp/tarball/v1.0.0'
+DOWNLOAD_URL = 'https://github.com/pluskid/pymmseg-cpp/archive/master.tar.gz'
 LICENSE = "MIT"
 PROJECT = "pymmseg-cpp"
 
