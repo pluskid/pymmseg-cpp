@@ -66,19 +66,20 @@ mmseg_Dictionary_add(PyObject *self, PyObject *args, PyObject *kwds)
 				if (tmp == NULL) {
 					return NULL;
 				}
-				chars = PyUnicode_GET_SIZE(tmp);
+				chars = static_cast<int>(PyUnicode_GET_SIZE(tmp));
 			}
 		} else if (PyUnicode_Check(obj)) {
 			tmp = PyUnicode_AsUTF8String(obj);
 			if (tmp != NULL) {
 				utf8 = PyString_AsString(tmp);
 				if (chars == -1) {
-					chars = PyUnicode_GET_SIZE(obj);
+					chars = static_cast<int>(PyUnicode_GET_SIZE(obj));
 				}
 			}
 		}
 		if (utf8 != NULL) {
-			rmmseg::Word *w = rmmseg::make_word(utf8, chars, freq, strlen(utf8));
+			rmmseg::Word *w = rmmseg::make_word(utf8, chars, freq, 
+				static_cast<int>(strlen(utf8)));
 			rmmseg::dict::add(w);
 		}
 	}
@@ -104,7 +105,7 @@ mmseg_Dictionary_has_word(PyObject *self, PyObject *obj)
 		}
 	}
 	if (utf8 != NULL) {
-		if (rmmseg::dict::get(utf8, strlen(utf8))) {
+		if (rmmseg::dict::get(utf8, static_cast<int>(strlen(utf8)))) {
 			Py_XDECREF(uni);
 			Py_INCREF(Py_True);
 			return (PyObject *)Py_True;
@@ -254,7 +255,7 @@ mmseg_Token_init(mmseg_Token *self, PyObject *args, PyObject *kwds)
 
 		tmp = self->text;
 		self->text = uni;
-		self->length = PyUnicode_GET_SIZE(self->text);
+		self->length = static_cast<int>(PyUnicode_GET_SIZE(self->text));
 		self->end = self->start + self->length;
 		Py_XDECREF(tmp);
 	}
@@ -356,7 +357,8 @@ mmseg_Algorithm_init(mmseg_Algorithm *self, PyObject *args, PyObject *kwds)
 	}
 	if (utf8 != NULL) {
 		self->text = PyMem_Strdup(utf8);
-		self->algorithm = new rmmseg::Algorithm(self->text, strlen(self->text));
+		self->algorithm = new rmmseg::Algorithm(self->text, 
+			static_cast<int>(strlen(self->text)));
 		#ifdef DEBUG
 			PySys_WriteStderr("Algorithm object initialized!\n");
 		#endif
@@ -404,7 +406,7 @@ mmseg_Algorithm_iternext(mmseg_Algorithm *self)
 					Py_DECREF(result);
 					return NULL;
 				}
-				result->start = rtk.text - self->algorithm->get_text();
+				result->start = static_cast<int>(rtk.text - self->algorithm->get_text());
 				result->length = rtk.length;
 				result->end = result->start + result->length;
 				return result;
@@ -417,8 +419,8 @@ mmseg_Algorithm_iternext(mmseg_Algorithm *self)
 					Py_DECREF(result);
 					return NULL;
 				}
-				result->start = PyUnicode_GET_SIZE(uni);
-				result->length = PyUnicode_GET_SIZE(result->text);
+				result->start = static_cast<int>(PyUnicode_GET_SIZE(uni));
+				result->length = static_cast<int>(PyUnicode_GET_SIZE(result->text));
 				result->end = result->start + result->length;
 				Py_DECREF(uni);
 				return result;

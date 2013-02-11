@@ -28,7 +28,7 @@ namespace rmmseg
         if (freq > USHRT_MAX)
             freq = USHRT_MAX;   /* avoid overflow */
         if (nbytes == -1)
-            nbytes = std::strlen(text);
+            nbytes = static_cast<int>(std::strlen(text));
         Word *w = static_cast<Word *>(pool_alloc(sizeof(Word)
                                                  + nbytes+1
                                                  - word_embed_len));

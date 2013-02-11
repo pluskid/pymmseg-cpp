@@ -70,7 +70,7 @@ namespace rmmseg
 
     static void rehash()
     {
-        int new_n_bins = new_size();
+        size_t new_n_bins = new_size();
         Entry **new_bins = static_cast<Entry **>(calloc(new_n_bins,
                                                         sizeof(Entry *)));
         Entry *entry, *next;
