@@ -10,4 +10,4 @@ dist/
 .project/
 *.egg-info/
 *.build/
-
+dicts/
