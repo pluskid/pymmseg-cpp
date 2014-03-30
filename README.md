@@ -30,7 +30,7 @@ To use pymmseg-cpp in normal Python program, first import the module and
 init by loading the dictionaries:
 
 ```python
-from pymmseg import mmseg
+import mmseg
 
 mmseg.Dictionary.load_dictionaries()
 ```
@@ -52,7 +52,7 @@ You can also load your own character dictionary or word dictionary in the
 following way:
 
 ```python
-from pymmseg import mmseg
+import mmseg
 mmseg.dict_load_words('customize_words.dic')
 mmseg.dict_load_chars('customize_chars.dic')
 ```
