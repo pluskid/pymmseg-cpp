@@ -53,8 +53,8 @@ following way:
 
 ```python
 import mmseg
-mmseg.dict_load_words('customize_words.dic')
-mmseg.dict_load_chars('customize_chars.dic')
+mmseg.Dictionary.load_words('customize_words.dic')
+mmseg.Dictionary.load_chars('customize_chars.dic')
 ```
 
 ### Format for chars.dic
